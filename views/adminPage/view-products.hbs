@@ -1,0 +1,68 @@
+<div class="flex flex-col overflow-hidden">
+    <div class="overflow-x-auto sm:-mx-6 lg:mx-10">
+        <div class=" m-10   inline-block w-5/6 sm:px-8 lg: px-8">
+            <div class="   ">
+                <div class="flex  justify-end">
+                    <button type="button"
+                        class="inline-block rounded-2xl px-6 py-4 bg-black border-gray-800 text-white font-medium text-xs leading-tight uppercase  hover:bg-black hover:opacity-30 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"><a
+                            href="/admin/add-products">Add-products</a></button>
+                </div>
+                <table class="min-w-full text-center m-8 ">
+                    <thead class="border-b bg-gray-50">
+                        <tr>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Image
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Product Name
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Brand
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Stock
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Price
+                            </th>
+                        </tr>
+                    </thead class="border-b">
+                    <tbody>
+                        {{#each products}}
+                        <tr class="bg-white border-b">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <img class=" w-20 h-26" src=" /product-images/{{this._id}}.jpg" alt="">
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{this.name}}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{this.brand}}
+
+                            </td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">1
+
+                            </td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{this.price}}
+
+                            </td>
+
+                            <td class="text-sm text-red-600 font-light px-6 py-4 whitespace-nowrap">
+                                <button type="button"
+                                    class="inline-block rounded-2xl px-6 py-4 bg-black border-gray-800 text-white font-medium text-xs leading-tight uppercase  hover:bg-black hover:opacity-30 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"><a
+                                        href="/admin/edit-products">Edit</a></button>
+                            </td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <button type="button"
+                                    class="inline-block rounded-2xl px-6 py-4 bg-red-700 border-gray-800 text-white font-medium text-xs leading-tight uppercase  hover:bg-red-700 hover:opacity-30 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"><a
+                                        href="/admin/delete-product/{{this._id}}">Delete</a></button>
+
+                            </td>
+
+                        </tr class="bg-white border-b">
+
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

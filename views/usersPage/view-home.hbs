@@ -1,0 +1,152 @@
+<!-- hero -->
+<div class=" hidden bg-black px-6 py-12 md: px-12 text-center lg:text-left">
+    <div class="container mx-auto xl:px-32">
+        <div class="grid lg:grid-cols-2 gap-12 flex items-center">
+            <div class="mt-12 lg:mt-0">
+                <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12"
+                    style="color: hsl(218, 81%, 95%);">
+                    The best offers <br /><span style="color: hsl(0, 80%, 47%);">on your sneakers</span></h1>
+                <a class="inline-block px-7 py-3 mr-2 bg-gray-200 text-gray-700 font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"
+                    data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Get started</a>
+                <a class="inline-block px-7 py-3 bg-transparent text-white font-medium text-sm leading-snug uppercase rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Learn more</a>
+            </div>
+            <div class="mb-12 lg:mb-0">
+                <img src="/images/shoeroom-high-resolution-logo-white-on-transparent-background.png"
+                    class="w-full rounded-lg shadow-lg" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!-- /hero-->
+
+<!-- Container for demo purpose -->
+
+
+<!-- Section: Design Block -->
+<section class="mb-12">
+    <div
+        class=" bg-red-600 alert alert-dismissible fade show -lg py-4 px-6 text-white md:flex justify-between items-center text-center md:text-left">
+        <div class="mb-4 md:mb-0 flex items-center flex-wrap justify-center md:justify-start">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="w-4 h-4 mr-2">
+                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                <path fill="currentColor"
+                    d="M216 23.86c0-23.8-30.65-32.77-44.15-13.04C48 191.85 224 200 224 288c0 35.63-29.11 64.46-64.85 63.99-35.17-.45-63.15-29.77-63.15-64.94v-85.51c0-21.7-26.47-32.23-41.43-16.5C27.8 213.16 0 261.33 0 320c0 105.87 86.13 192 192 192s192-86.13 192-192c0-170.29-168-193-168-296.14z" />
+            </svg>
+            <strong class="mr-1">Limited offer!</strong> Get it now before it's to late
+        </div>
+        <div class="flex items-center justify-center">
+            <a href="" class="text-white" data-bs-dismiss="alert" aria-label="Close">
+                <svg class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
+                    <path fill="currentColor"
+                        d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- Section: Design Block -->
+
+<!-- Container for demo purpose -->
+
+{{!-- cards --}}
+
+
+<div class="container mx-auto">
+    <div class="py-6  grid sm:grid-cols-1 gap-8 md:grid-cols-2  lg:grid-cols-4 lg:gap-6 ">
+        {{#each products}}
+        <div class="    gap-10 rounded-lg shadow-lg bg-white max-w-sm">
+            <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="/product-images/{{this._id}}.jpg" alt="" />
+            </a>
+            <div class="p-6">
+                <h5 class="text-gray-900 w-48 h-14 text-xl font-medium mb-2">{{this.name}}</h5>
+                <p class="text-gray-700 text-base mb-4">
+                    {{this.price}}
+                </p>
+                <div class="flex items-center justify-center">
+                    <button type="button"
+                        class="  px-28 py-2.5 lg:px-10 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-grey-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-700 active:shadow-lg transition duration-150 ease-in-out">Add
+                        to cart</button>
+                </div>
+
+            </div>
+
+
+        </div>
+        {{/each}}
+    </div>
+
+
+</div>
+{{!-- /cards --}}
+<!-- top section-->
+<div class="w-5/12 mx-auto bg-white h-64 mt-8 rounded-t-lg bg-indigo-700 flex-col shadow-2xl flex">
+
+
+    <!-- end top icons section -->
+
+    <!--back button-->
+
+
+    <!-- avatar profile-->
+    <div class="h-32">
+        <div class="wrapper flex-column items-center">
+            <div class="h-16 w-16 rounded-full bg-white mx-auto">
+                <img src="https://i0.wp.com/zblogged.com/wp-content/uploads/2019/02/FakeDP.jpeg?resize=567%2C580&ssl=1"
+                    class="rounded-full" alt="">
+            </div>
+            <div class="text-white font-semibold text-xl mt-1 content-center text-center">
+                Jonys Smith
+            </div>
+            <div class="text-white text-xs text-center text-gray-300">
+                Sao Paulo, Brazil
+            </div>
+            <div class="text-xs text-center">
+                <i class="fas fa-star fa-xs text-white"></i>
+                <i class="fas fa-star fa-xs text-white"></i>
+                <i class="fas fa-star fa-xs text-white"></i>
+                <i class="fas fa-star fa-xs text-white"></i>
+                <i class="fas fa-star fa-xs text-white"></i>
+            </div>
+        </div>
+
+    </div>
+    <!-- end avatar profile-->
+
+    <!-- middle card-->
+    <div class="w-1/2 ml-2 flex my-auto">
+        <i class="fas my-auto fa-star-of-life fa-lg text-indigo-500 "></i>
+        <div class="flex-column ml-4 mt-1">
+            <div class="font-bold">35</div>
+            <div class="text-gray-500 text-xs relative" style="top:-0.5em;">Assistencies</div>
+        </div>
+    </div>
+    <div class="w-1/2 flex my-auto pl-5 border-l-2 border-gray-300">
+        <i class="fas my-auto fa-ambulance fa-lg text-indigo-500 "></i>
+        <div class="flex-column ml-4 mt-1">
+            <div class="font-bold">20</div>
+            <div class="text-gray-500 text-xs relative" style="top:-0.5em;">Deliveries</div>
+        </div>
+    </div>
+</div>
+<!-- end middle card-->
+
+</div>
+<!-- end top section-->
+
+<!-- bottom section -->
+<div class="h-auto w-5/12 bg-white mx-auto pt-12 shadow-2xl">
+    <div class="mx-auto w-11/12 h-32 bg-white shadow-lg" style="top:3em;">
+        <div class="flex border-black pt-4 border-2 h-16 mx-6">
+            <div class="font-extrabold text-gray-800 text-lg">
+                <label for="">description </label>
+                <input type="text">
+            </div>
+            <i class="fas fa-calendar fa-lg text-gray-400"></i>
+        </div>
+    </div>
+</div>
+<!-- end bottom section -->
