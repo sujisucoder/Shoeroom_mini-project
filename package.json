@@ -1,12 +1,19 @@
 {
-  "name": "shoeroom-mern-miniproject_updated",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "shoeroom-mern-miniproject-updated",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./bin/www"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "^4.18.2",
+    "hbs": "^4.2.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
