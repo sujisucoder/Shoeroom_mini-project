@@ -1,1 +1,75 @@
-<h1>fffff</h1>
+<div class="flex flex-col overflow-hidden">
+    <div class="overflow-x-auto sm:-mx-6 lg:mx-10">
+        <div class=" m-10   inline-block w-5/6 sm:px-8 lg: px-8">
+            <div class=" overflow-x-auto overflow-y-auto  ">
+
+                <table class="min-w-full text-center m-8  ">
+                    <thead class="border-b bg-gray-50">
+                        <tr>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Date
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Address
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Pincode
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Email
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Amount
+                            </th>
+
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Payment
+                            </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                Status
+                            </th>
+                        </tr>
+                    </thead class="border-b">
+                    <tbody>
+                        {{#each orders}}
+                        <tr class="bg-white border-b">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{this.date}}
+
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{this.deliveryDetails.address}}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                {{this.deliveryDetails.pincode}}
+                            </td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                {{this.deliveryDetails.email}}
+
+                            </td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                {{this.totalAmount}}
+                            </td>
+
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                {{this.paymentMethod}}
+                            </td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                {{this.status}}
+                            </td>
+
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <button type="button"
+                                    class="inline-block rounded-2xl px-6 py-4 bg-red-700 border-gray-800 text-white font-medium text-xs leading-tight uppercase  hover:bg-red-700 hover:opacity-30 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"><a
+                                        href="/view-order-products/{{this._id}}">view products</a></button>
+
+                            </td>
+
+
+                        </tr class="bg-white border-b">
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
