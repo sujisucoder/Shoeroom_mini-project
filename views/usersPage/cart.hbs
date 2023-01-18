@@ -1,106 +1,104 @@
-<div class=" container ">
+<div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
+    id="checkout">
+    <div class="flex items-center lg:flex-row flex-col  justify-center" id="cart">
+        <div class="lg:w-1/2 md:w-8/12 w-full 	 lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-white overflow-y-hidden overflow-x-hidden lg:h-screen h-auto"
+            id="scroll">
 
-    <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
-        id="checkout">
-        <div class="flex items-center lg:flex-row flex-col  justify-center" id="cart">
-            <div class="lg:w-1/2 md:w-8/12 w-full 	 lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-white overflow-y-hidden overflow-x-hidden lg:h-screen h-auto"
-                id="scroll">
-
-                <p class="lg:text-4xl text-3xl font-black leading-10 text-gray-800  dark:text-black pt-3">Cart
-                </p>
-                <hr>
+            <p class="lg:text-4xl text-3xl font-black leading-10 text-gray-800  dark:text-black pt-3">Cart
+            </p>
+            <hr>
 
 
 
-                {{!-- start cart--}}
-                {{#each products}}
-                <div class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
-                    <div class="md:w-4/12 2xl:w-1/4 w-full">
-                        <img src="/product-images/{{this.product._id}}.jpg" alt="Black Leather Purse"
-                            class="h-full object-center object-cover md:block hidden" />
-                        <img src="/product-images/{{this.product._id}}.jpg" alt="Black Leather Purse"
-                            class="md:hidden w-full h-full object-center object-cover" />
-                    </div>
-                    <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
-                        <p class="text-xs leading-3 text-gray-800 dark:text-black md:pt-0 pt-4">
+            {{!-- start cart--}}
+            {{#each products}}
+            <div class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
+                <div class="md:w-4/12 2xl:w-1/4 w-full">
+                    <img src="/product-images/{{this.product._id}}.jpg" alt="Black Leather Purse"
+                        class="h-full object-center object-cover md:block hidden" />
+                    <img src="/product-images/{{this.product._id}}.jpg" alt="Black Leather Purse"
+                        class="md:hidden w-full h-full object-center object-cover" />
+                </div>
+                <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
+                    <p class="text-xs leading-3 text-gray-800 dark:text-black md:pt-0 pt-4">
+                    </p>
+                    <div class="flex items-center justify-between w-full">
+                        <p class="text-base font-black leading-none text-gray-800 dark:text-black">
+                            {{this.product.name}}
+
                         </p>
-                        <div class="flex items-center justify-between w-full">
-                            <p class="text-base font-black leading-none text-gray-800 dark:text-black">
-                                {{this.product.name}}
-
-                            </p>
-                            <div>
-                                <button
-                                    onclick="changeQuantity('{{this._id}}', '{{this.product._id}}','{{../user}}',-1)"
-                                    class="py-2 px-2.5 border border-gray-200  focus:outline-none dark:bg-gray-200
+                        <div>
+                            <button
+                                onclick="changeQuantity('{{this._id}}', '{{this.product._id}}','{{../user._id}}',-1)"
+                                class="py-2 px-2.5 border border-gray-200  focus:outline-none dark:bg-gray-200
                                 dark:hover:bg-gray-300 dark:text-black">-</button>
-                                <span id="{{this.product._id}}">{{this.quantity}}</span><button
-                                    onclick="changeQuantity('{{this._id}}', '{{this.product._id}}','{{../user}}',1)"
-                                    class="py-2 px-2.5 border border-gray-200  focus:outline-none dark:bg-gray-200 
+                            <span id="{{this.product._id}}">{{this.quantity}}</span><button
+                                onclick="changeQuantity('{{this._id}}', '{{this.product._id}}','{{../user._id}}',1)"
+                                class="py-2 px-2.5 border border-gray-200  focus:outline-none dark:bg-gray-200 
                                 dark:hover:bg-gray-300 dark:text-black">+</button>
-                            </div>
+                        </div>
 
+                    </div>
+                    <p class="text-xs leading-3 text-gray-600 dark:text-black pt-2">Height: 10 inches</p>
+                    <p class="text-xs leading-3 text-gray-600 dark:text-black py-4">Color: Black</p>
+                    <p class="w-96 text-xs leading-3 text-gray-600 dark:text-black">Composition: 100% calf
+                        leather
+                    </p>
+                    <div class="flex items-center justify-between pt-5">
+                        <div class="flex itemms-center">
+                            <p class="text-xs leading-3 underline text-gray-800 dark:text-black cursor-pointer">
+                                Add
+                                to favorites</p>
+                            <a onclick="removeProduct('{{this._id}}','{{this.product._id}}')"
+                                class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">Remove</a>
                         </div>
-                        <p class="text-xs leading-3 text-gray-600 dark:text-black pt-2">Height: 10 inches</p>
-                        <p class="text-xs leading-3 text-gray-600 dark:text-black py-4">Color: Black</p>
-                        <p class="w-96 text-xs leading-3 text-gray-600 dark:text-black">Composition: 100% calf
-                            leather
+                        <p class="text-base font-black leading-none text-gray-800 dark:text-black">
+                            ₹ {{this.product.price}}
                         </p>
-                        <div class="flex items-center justify-between pt-5">
-                            <div class="flex itemms-center">
-                                <p class="text-xs leading-3 underline text-gray-800 dark:text-black cursor-pointer">
-                                    Add
-                                    to favorites</p>
-                                <a onclick="removeProduct('{{this._id}}','{{this.product._id}}')"
-                                    class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">Remove</a>
-                            </div>
-                            <p class="text-base font-black leading-none text-gray-800 dark:text-black">
-                                {{this.product.price}}
-                            </p>
-                        </div>
                     </div>
                 </div>
-                {{/each }}
-                {{!-- start summary--}}
             </div>
-            <div class="lg:w-96 md:w-8/12 w-full bg-gray-100 dark:bg-gray-200 h-full">
-                <div
-                    class="flex flex-col lg:h-screen h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6 justify-between overflow-y-auto">
-                    <div>
-                        <p class="lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-black">Summary
+            {{/each }}
+            {{!-- start summary--}}
+        </div>
+        <div class="lg:w-96 md:w-8/12 w-full bg-gray-100 dark:bg-gray-200 h-full">
+            <div
+                class="flex flex-col lg:h-screen h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6 justify-between overflow-y-auto">
+                <div>
+                    <p class="lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-black">Summary
+                    </p>
+                    <div class="flex items-center justify-between pt-16">
+                        <p class="text-base leading-none text-gray-800 dark:text-black">Subtotal</p>
+                        <p class="text-base leading-none text-gray-800 dark:text-black">$9,000</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-5">
+                        <p class="text-base leading-none text-gray-800 dark:text-black">Shipping</p>
+                        <p class="text-base leading-none text-gray-800 dark:text-black">$30</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-5">
+                        <p class="text-base leading-none text-gray-800 dark:text-black">Tax</p>
+                        <p class="text-base leading-none text-gray-800 dark:text-black">$35</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
+                        <p class="text-2xl leading-normal text-gray-800 dark:text-black">Total</p>
+                        <p class="text-2xl font-bold leading-normal text-right text-gray-800 dark:text-black">
+                            ₹ <span id="totalValue"> {{totalValue}}</span>
                         </p>
-                        <div class="flex items-center justify-between pt-16">
-                            <p class="text-base leading-none text-gray-800 dark:text-black">Subtotal</p>
-                            <p class="text-base leading-none text-gray-800 dark:text-black">$9,000</p>
-                        </div>
-                        <div class="flex items-center justify-between pt-5">
-                            <p class="text-base leading-none text-gray-800 dark:text-black">Shipping</p>
-                            <p class="text-base leading-none text-gray-800 dark:text-black">$30</p>
-                        </div>
-                        <div class="flex items-center justify-between pt-5">
-                            <p class="text-base leading-none text-gray-800 dark:text-black">Tax</p>
-                            <p class="text-base leading-none text-gray-800 dark:text-black">$35</p>
-                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
-                            <p class="text-2xl leading-normal text-gray-800 dark:text-black">Total</p>
-                            <p id="totalValue"
-                                class="text-2xl font-bold leading-normal text-right text-gray-800 dark:text-black">
-                                {{totalValue}}</p>
-                        </div>
-                        <button
-                            class="text-base leading-none w-full py-5 bg-black border-gray-300 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700">
-                            <a>
-                                Checkout
-                            </a>
-                        </button>
-                    </div>
+                    <button
+                        class="text-base leading-none w-full py-5 bg-black border-gray-300 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700">
+                        <a href="/place-order">
+                            Checkout
+                        </a>
+                    </button>
                 </div>
             </div>
         </div>
-
     </div>
+
+
     <style>
         /* width */
         #scroll::-webkit-scrollbar {
@@ -117,3 +115,40 @@
             background: rgb(133, 132, 132);
         }
     </style>
+
+
+
+    <script>
+        function changeQuantity(cartId, prodId, userId, count) {
+            let quantity = parseInt(document.getElementById(prodId).innerHTML)
+            count = parseInt(count)
+            console.log(Object.values(userId));
+            $.ajax({
+                url: '/change-product-quantity',
+                data: {
+
+                    cart: cartId,
+                    product: prodId,
+                    user: userId,
+                    count: count,
+                    quantity: quantity
+                },
+                method: 'post',
+                success: (response) => {
+                    if (response.removeProduct) {
+                        alert("Product removed from cart")
+                        location.reload()
+                    } else {
+
+                        document.getElementById(prodId).innerHTML = quantity + count;
+                        document.getElementById('totalValue').innerHTML = response.total;
+
+                    }
+
+                }
+
+            })
+        }
+
+
+    </script>
