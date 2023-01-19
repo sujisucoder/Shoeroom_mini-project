@@ -114,8 +114,15 @@ router.get('/place-order',verifyLogin,async(req,res)=>{
 router.post('/place-order', async(req,res)=>{
   let products = await userHelpers.getCartProductList(req.body.userId)
   let totalPrice = await userHelpers.getTotalAmount(req.body.userId)
-  userHelpers.placeOrder(req.body, products, totalPrice).then((response)=>{
-  res.json({status:true})
+  userHelpers.placeOrder(req.body, products, totalPrice).then((orderId)=>{
+    if (req.body['payment-method']==='COD') {
+      res.json({codSuccess:true})    
+    }else{
+      userHelpers.generateRazorpay(orderId, totalPrice).then((response)=>{
+        res.json(response)
+      })
+    }
+  
   })
 
   
@@ -138,5 +145,32 @@ router.get('/view-order-products/:id',async(req,res)=>{
    res.render('UsersPage/view-order-products',{products})
 })
 
+router.post('/verify-payment', (req,res)=>{
+  console.log(req.body);
+  userHelpers.verifyPayment(req.body).then(()=>{
+    userHelpers.changePaymentStatus(req.body['order[receipt]']).then(()=>{
+      console.log('payment successful');
+      res.json({status:true})
+    })
+  }).catch((err)=>{
+      res.json({status:false,errMsg:''})
+  })
+})
+
 module.exports = router;
- 
+// {
+//   'payment[razorpay_payment_id]': 'pay_L5uvZRNLuMvZal',        
+//   'payment[razorpay_order_id]': 'order_L5uvQ9uBMn9lX5',        
+//   'payment[razorpay_signature]': '0745591ea1ddd675abcda40a412b4668277653e6fc9adea5aebed26db258c8c5',
+//   'order[id]': 'order_L5uvQ9uBMn9lX5',
+//   'order[entity]': 'order',
+//   'order[amount]': '23695',
+//   'order[amount_paid]': '0',
+//   'order[amount_due]': '23695',
+//   'order[currency]': 'INR',
+//   'order[receipt]': '63c8d22d1d7d73f06430788b',
+//   'order[offer_id]': '',
+//   'order[status]': 'created',
+//   'order[attempts]': '0',
+//   'order[created_at]': '1674105390'
+// }

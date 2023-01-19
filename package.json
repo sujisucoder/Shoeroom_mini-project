@@ -18,6 +18,7 @@
     "http-errors": "~1.6.3",
     "mongodb": "^4.13.0",
     "morgan": "~1.9.1",
+    "razorpay": "^2.8.4",
     "tw-elements": "^1.0.0-alpha13"
   },
   "devDependencies": {
