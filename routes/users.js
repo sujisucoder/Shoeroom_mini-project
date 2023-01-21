@@ -13,15 +13,23 @@ next()
   res.redirect('/login')
 }
 }
-/* GET home page. */
-router.get('/', async(req, res, next) => {
-  let user = req.session.user
-  let cartCount = null
-  //to prevent logout using back button 
+//middleware noCache 
+const noCache = (req, res, next)=>{
+   
+
   res.header(
     "Cache-control",
     "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0"
   );
+  next()
+}
+
+/* GET home page. */
+router.get('/',noCache,  async(req, res, next) => {
+    //use no cache here
+  let user = req.session.user
+  let cartCount = null
+
   if (user) {
      cartCount = await userHelpers.getCartCount(req.session.user._id)
   }
@@ -34,11 +42,9 @@ router.get('/users', (req, res) => {
   res.render('usersPage/view-home');
 });
 
-router.get('/login', (req, res) => {
-  res.header(
-    "Cache-control",
-    "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0"
-  );
+router.get('/login',noCache, (req, res) => {
+  //use no cache here
+
   if (req.session.loggedIn) {
     res.redirect('/')
     
