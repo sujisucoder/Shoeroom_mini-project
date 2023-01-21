@@ -17,6 +17,11 @@ next()
 router.get('/', async(req, res, next) => {
   let user = req.session.user
   let cartCount = null
+  //to prevent logout using back button 
+  res.header(
+    "Cache-control",
+    "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0"
+  );
   if (user) {
      cartCount = await userHelpers.getCartCount(req.session.user._id)
   }
