@@ -2,6 +2,7 @@ const { response } = require("../app")
 const { ObjectId } = require('mongodb');
 const db = require('../config/connection');
 const collection = require('../config/collection');
+const { reject } = require("promise");
 
 const objectId = require('mongodb').ObjectId
 
@@ -30,6 +31,61 @@ module.exports = {
                 resolve({status:false})
             }
 
+        })
+    },
+
+    getUserCount:()=>{
+        return new Promise(async(resolve, reject) => {
+           await db.get().collection(collection.USER_COLLECTION).count().then((response)=>{
+                resolve(response)
+            })
+        }).catch((err)=>{
+            reject(err)
+        })
+    },
+
+    getProductCount:()=>{
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.PRODUCT_COLLECTION).count().then((response)=>{
+                resolve(response)
+            })
+        }).catch((err)=>{
+            reject(err)
+        })
+    },
+
+    getOrderCount:()=>{
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ORDER_COLLECTION).count().then((response)=>{
+               
+                resolve(response)
+            })
+        }).catch((err)=>{
+            reject(err)
+        })
+    },
+
+    getSalesCount:()=>{
+        return new Promise(async(resolve, reject) => {
+        try {
+          let total = await  db.get().collection(collection.ORDER_COLLECTION).aggregate([
+                {
+                    $match: { status: {$ne: 'order pending'} }
+                },
+                {
+                    $project:{ totalAmount:1}
+                },
+                {
+                    $group:{
+                        _id : null,
+                        total: {$sum: '$totalAmount'}
+                    }
+                }
+            ]).toArray()
+            resolve(total[0].total)
+        } catch  {
+            reject()
+        }
         })
     }
 }

@@ -44,12 +44,18 @@
 <body>
     {{#if adminHeader}}
     {{>admin-header}}
-    {{else}}
-    {{>user-header}}
-    {{/if}}
     {{{body}}}
 
+    {{else}}
+    {{>user-header}}
+    {{{body}}}
     {{>footer}}
+    {{/if}}
+
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script src="/javascripts/addToCart.js"></script>

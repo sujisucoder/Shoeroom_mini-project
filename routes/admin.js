@@ -30,7 +30,7 @@ const noCache = (req, res, next)=>{
 router.get('/',noCache, (req, res, next) => {
  if (req.session.adminLoggedIn) {
   let admin = req.session.admin
-    res.render('adminPage/view-home',{admin,adminHeader:true} );  
+  res.render('adminPage/view-home',{admin,adminHeader:true} );  
  }else{
   res.render('adminPage/admin-login',{ adminHeader:false, error:req.session.adminLogErr  })
    req.session.adminLogErr = false
@@ -45,7 +45,7 @@ router.post('/',(req, res)=>{
       req.session.adminLoggedIn = true
       req.session.admin = response.admin
       console.log(req.session.admin);
-      res.redirect('/admin')
+      res.redirect('/admin/view-home')
       
     }else{
      req.session.adminLogErr = true
@@ -59,6 +59,18 @@ router.get('/admin-logout', (req, res)=>{
 
   req.session.destroy()
   res.redirect('/admin')
+
+})
+
+router.get('/view-home',verifyAdminLogin, async(req, res)=>{
+    
+  let admin = req.session.admin
+  let allCount = {}
+  allCount.userCount = await adminHelpers.getUserCount()
+  allCount.productCount = await adminHelpers.getProductCount()
+  allCount.salesCount = await adminHelpers.getSalesCount()
+  allCount.orderCount = await adminHelpers.getOrderCount()
+  res.render('adminPage/view-home',{admin,adminHeader:true, allCount} );  
 
 })
 
