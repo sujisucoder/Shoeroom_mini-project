@@ -4,6 +4,7 @@ const productHelpers = require('../helpers/product-helpers');
 const adminHelpers = require('../helpers/admin-helpers')
 const { route } = require('./users');
 const excelJs = require("exceljs");
+const { response } = require('../app');
 
 const router = express.Router();
 
@@ -70,21 +71,26 @@ router.get('/view-home',verifyAdminLogin, async(req, res)=>{
   allCount.productCount = await adminHelpers.getProductCount()
   allCount.salesCount = await adminHelpers.getSalesCount()
   allCount.orderCount = await adminHelpers.getOrderCount()
+  
+
   res.render('adminPage/view-home',{admin,adminHeader:true, allCount} );  
 
 })
 
 router.get('/products',verifyAdminLogin, (req, res) => {
+
   productHelpers.getAllProductOnAdmin().then((products)=>{
     res.render('adminPage/view-products', {  products, adminHeader:true });
   });
 });
 
 router.get('/add-products', (req, res) => {
+
   res.render('adminPage/add-products', { adminHeader:true });
 });
 
 router.post('/add-products', (req, res) => {
+
   productHelpers.addProducts(req.body, (insertedId) => {
     const image = req.files.Image;
     const imageName = insertedId;
@@ -98,10 +104,12 @@ router.post('/add-products', (req, res) => {
 });
 
 router.get('/orders', (req,res)=>{
+
   res.render('adminPage/orders', {  });
 })
 
 router.get('/delete-product/:id', (req,res)=>{
+
   let productId = req.params.id
   console.log(productId);
   productHelpers.deleteProduct(productId).then(()=>{
@@ -110,12 +118,14 @@ router.get('/delete-product/:id', (req,res)=>{
 })
 
 router.get('/edit-product/:id',async(req,res)=>{
+
   let productId = req.params.id
   let product = await productHelpers.getProductDetails(productId)
   res.render('adminPage/edit-products', {  product, adminHeader:true })
 })
 
 router.post('/edit-product/:id', (req,res)=>{
+
   let productId = req.params.id
   let productDetail = req.body
   console.log("ln 57"+productId);
@@ -128,5 +138,21 @@ router.post('/edit-product/:id', (req,res)=>{
       image.mv('./public/product-images/'+productId+'.jpg')
     }
   })
+})
+
+router.get('/user-info', async(req, res)=>{
+
+  let users =await adminHelpers.getAllUsers()
+  let count  = users.length
+    
+  res.render('adminPage/user-info',{users, adminHeader:true, count})
+
+ 
+})
+
+router.get('/sales-report', async(req, res)=>{
+
+  let salesReport = await adminHelpers.getSalesReport()
+  res.render('adminPage/sales-report',{salesReport,adminHeader:true})
 })
 module.exports = router;

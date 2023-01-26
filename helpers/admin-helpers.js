@@ -87,5 +87,22 @@ module.exports = {
             reject()
         }
         })
+    },
+
+    getAllUsers:()=>{
+        return new Promise(async(resolve, reject) => {
+            let users = await db.get().collection(collection.USER_COLLECTION).find().toArray()
+           
+            resolve(users)
+                
+        })
+        
+    },
+
+    getSalesReport:()=>{
+        return new Promise(async(resolve, reject) => {
+            let sales = await db.get().collection(collection.ORDER_COLLECTION).find().toArray()
+            resolve(sales)
+        })
     }
 }
