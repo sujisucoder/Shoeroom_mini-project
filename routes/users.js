@@ -88,6 +88,17 @@ router.get('/logout', (req,res)=>{
   res.redirect('/')
 })
 
+router.get('/product-details/:id', verifyLogin, async(req, res)=>{
+  user = req.session.user
+  console.log("user:"+user._id);
+  cartCount = await userHelpers.getCartCount(user._id)
+  console.log("cart:"+cartCount);
+
+  products = await userHelpers.getDetailsOnProduct(req.params.id)
+  console.log(products);
+  res.render('usersPage/product-details',{products, user, cartCount})
+})
+
 router.get('/cart',verifyLogin, async(req,res)=>{
   let products = await userHelpers.getAllProductOnUser(req.session.user._id)
   let totalValue = 0
@@ -174,20 +185,6 @@ router.post('/verify-payment', (req,res)=>{
   })
 })
 
+
+
 module.exports = router;
-// {
-//   'payment[razorpay_payment_id]': 'pay_L5uvZRNLuMvZal',        
-//   'payment[razorpay_order_id]': 'order_L5uvQ9uBMn9lX5',        
-//   'payment[razorpay_signature]': '0745591ea1ddd675abcda40a412b4668277653e6fc9adea5aebed26db258c8c5',
-//   'order[id]': 'order_L5uvQ9uBMn9lX5',
-//   'order[entity]': 'order',
-//   'order[amount]': '23695',
-//   'order[amount_paid]': '0',
-//   'order[amount_due]': '23695',
-//   'order[currency]': 'INR',
-//   'order[receipt]': '63c8d22d1d7d73f06430788b',
-//   'order[offer_id]': '',
-//   'order[status]': 'created',
-//   'order[attempts]': '0',
-//   'order[created_at]': '1674105390'
-// }

@@ -39,11 +39,13 @@
                         {{#each products}}
                         <tr class="bg-white border-b">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                <img class=" w-20 h-26" src=" /product-images/{{this._id}}.jpg" alt="">
+                                <img class=" w-20 h-26" src=" /product-image1/{{this._id}}.jpg" alt="">
                             </td>
 
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{this.name}}</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{this.brand}}
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{this.model_name}}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                {{this.manufacturer}}
 
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">1

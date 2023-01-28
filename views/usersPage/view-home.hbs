@@ -1,5 +1,38 @@
 <!-- hero -->
 {{#if user}}
+<div id="carouselExampleIndicators" class="carousel slide relative" data-bs-ride="carousel">
+    <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner relative w-full overflow-hidden">
+        <div class="carousel-item active float-left w-full">
+            <img src="/images/home_page_banner_nike_updated.jpg" class="block w-full" alt="Wild Landscape" />
+        </div>
+        <div class="carousel-item float-left w-full">
+            <img src="/images/home_page_banner_sale70_updated.jpg" class="block w-full" alt="Camera" />
+        </div>
+        <div class="carousel-item float-left w-full">
+            <img src="/images/shaurya-garg-shoe-promo.jpg" class="block w-full" alt="Exotic Fruits" />
+        </div>
+    </div>
+    <button
+        class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+        type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+        class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+        type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
 {{else}}
 <div class="  bg-black px-6 py-12 md: px-12 text-center lg:text-left">
@@ -62,12 +95,13 @@
     <div class="py-6  grid sm:grid-cols-1 gap-8 md:grid-cols-2  lg:grid-cols-4 lg:gap-6 ">
         {{#each products}}
         <div class="    gap-10 rounded-lg shadow-lg bg-white max-w-sm">
-            <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg" src="/product-images/{{this._id}}.jpg" alt="" />
+            <a href="/product-details/{{this._id}}" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="/product-Image1/{{this._id}}.jpg" alt="" />
             </a>
             <div class="p-6">
-                <h5 class="text-gray-900 w-48 h-14 text-xl font-medium mb-2">{{this.name}}</h5>
-                <p class="text-gray-700 text-base mb-4">
+                <h8 class="text-gray-900 w-48 h-14 text-xl font-medium mb-2">{{this.model_name}}</h8>
+                <h5 class="text-gray-900 w-38 h-7 font-medium mb-2">{{this.manufacturer}}</h5>
+                <p class="text-gray-700 text-base mb-4">₹
                     {{this.price}}
                 </p>
                 <div class="flex items-center justify-center">

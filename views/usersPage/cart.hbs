@@ -1,7 +1,7 @@
 <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
     id="checkout">
     <div class="flex items-center lg:flex-row flex-col  justify-center" id="cart">
-        <div class="lg:w-1/2 md:w-8/12 w-full 	 lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-white overflow-y-hidden overflow-x-hidden lg:h-screen h-auto"
+        <div class="lg:w-1/2 md:w-8/12 w-full 	 lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-white  overflow-x-hidden lg:h-screen h-auto"
             id="scroll">
 
             <p class="lg:text-4xl text-3xl font-black leading-10 text-gray-800  dark:text-black pt-3">Cart
@@ -14,9 +14,9 @@
             {{#each products}}
             <div class="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
                 <div class="md:w-4/12 2xl:w-1/4 w-full">
-                    <img src="/product-images/{{this.product._id}}.jpg" alt="Black Leather Purse"
+                    <img src="/product-image1/{{this.product._id}}.jpg" alt="image"
                         class="h-full object-center object-cover md:block hidden" />
-                    <img src="/product-images/{{this.product._id}}.jpg" alt="Black Leather Purse"
+                    <img src="/product-image1/{{this.product._id}}.jpg" alt="image"
                         class="md:hidden w-full h-full object-center object-cover" />
                 </div>
                 <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
@@ -24,7 +24,7 @@
                     </p>
                     <div class="flex items-center justify-between w-full">
                         <p class="text-base font-black leading-none text-gray-800 dark:text-black">
-                            {{this.product.name}}
+                            {{this.product.model_name}}
 
                         </p>
                         <div>
@@ -39,9 +39,9 @@
                         </div>
 
                     </div>
-                    <p class="text-xs leading-3 text-gray-600 dark:text-black pt-2">Height: 10 inches</p>
-                    <p class="text-xs leading-3 text-gray-600 dark:text-black py-4">Color: Black</p>
-                    <p class="w-96 text-xs leading-3 text-gray-600 dark:text-black">Composition: 100% calf
+                    <p class="text-xs leading-3 text-gray-600 dark:text-black pt-2">Height: {{this.product.height}}</p>
+                    <p class="text-xs leading-3 text-gray-600 dark:text-black py-4">Color: {{this.product.color}}</p>
+                    <p class="w-96 text-xs leading-3 text-gray-600 dark:text-black">Composition: 100%
                         leather
                     </p>
                     <div class="flex items-center justify-between pt-5">
@@ -67,18 +67,7 @@
                 <div>
                     <p class="lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-black">Summary
                     </p>
-                    {{!-- <div class="flex items-center justify-between pt-16">
-                        <p class="text-base leading-none text-gray-800 dark:text-black">Subtotal</p>
-                        <p class="text-base leading-none text-gray-800 dark:text-black">$9,000</p>
-                    </div>
-                    <div class="flex items-center justify-between pt-5">
-                        <p class="text-base leading-none text-gray-800 dark:text-black">Shipping</p>
-                        <p class="text-base leading-none text-gray-800 dark:text-black">$30</p>
-                    </div>
-                    <div class="flex items-center justify-between pt-5">
-                        <p class="text-base leading-none text-gray-800 dark:text-black">Tax</p>
-                        <p class="text-base leading-none text-gray-800 dark:text-black">$35</p>
-                    </div> --}}
+
                 </div>
                 <div>
                     <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">

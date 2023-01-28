@@ -6,7 +6,7 @@
 
                 <div class="flex justify-center">
                     <div class="mb-3 xl:w-96">
-                        <label for="Product Name" class="form-label inline-block mb-2 text-gray-700">Product
+                        <label for="Product Name" class="form-label inline-block mb-2 text-gray-700">Model
                             Name</label>
                         <input type="text" class="
                         form-control
@@ -24,9 +24,9 @@
                         ease-in-out
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                    " placeholder="Text input" name="name" />
+                    " placeholder="Enter model name" name="model_name" />
 
-                        <label for="Brand" class="form-label inline-block mb-2 text-gray-700">Brand</label>
+                        <label for="Brand" class="form-label inline-block mb-2 text-gray-700">Manufacturer</label>
                         <input type="text" class="
                         form-control
                         block
@@ -43,7 +43,7 @@
                         ease-in-out
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                    " placeholder="Enter brand" name="brand" />
+                    " placeholder="Enter manufacturer" name="manufacturer" />
 
                         <label for="Description" class="form-label inline-block mb-2 text-gray-700">Description</label>
                         <input type="text" class="
@@ -64,7 +64,7 @@
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                     " placeholder="Enter description" name="description" />
 
-                        <label for="Price" class="form-label inline-block mb-2 text-gray-700">Price</label>
+                        <label for="Price" class="form-label inline-block mb-2 text-gray-700">Color</label>
                         <input type="text" class="
                         form-control
                         block
@@ -81,26 +81,152 @@
                         ease-in-out
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                    " placeholder="Enter Price" name="price" />
+                    " placeholder="Enter color" name="color" />
+
+                        <label for="Price" class="form-label inline-block mb-2 text-gray-700">Item-Weight</label>
+                        <input type="number" class="
+                        form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                    " placeholder="Enter item-weight" name="item-weight" />
+
+                        <label for="Price" class="form-label inline-block mb-2 text-gray-700">Length</label>
+                        <input type="number" class="
+                        form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                    " placeholder="Enter length" name="length" />
 
 
-                        <label for="Image" class="form-label inline-block mb-2 text-gray-700">Image</label>
+                        <label for="Price" class="form-label inline-block mb-2 text-gray-700">Width</label>
+                        <input type="number" class="
+                        form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                    " placeholder="Enter width" name="width" />
+
+                        <label for="Price" class="form-label inline-block mb-2 text-gray-700">Height</label>
+                        <input type="number" class="
+                        form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                    " placeholder="Enter height" name="height" />
+
+                        <label for="Price" class="form-label inline-block mb-2 text-gray-700">Price</label>
+                        <input type="number" class=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
+                            bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out
+                            m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600
+                            focus:outline-none " placeholder=" Enter Price" name="price" />
+
+
+
+                        <img class="w-28 h-28" src="" alt="" id="preview1">
+                        <label for="Image" class="form-label inline-block mb-2 text-gray-700">Image-1(add the
+                            right side of the product)</label>
                         <input class="form-control
-    block
-    w-full
-    px-3
-    py-1.5
-    text-base
-    font-normal
-    text-gray-700
-    bg-white bg-clip-padding
-    border border-solid border-gray-300
-    rounded
-    transition
-    ease-in-out
-    m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" name="Image" type="file"
-                            id="formFile">
+                                        block
+                                        w-full
+                                        px-3
+                                        py-1.5
+                                        text-base
+                                        font-normal
+                                        text-gray-700
+                                        bg-white bg-clip-padding
+                                        border border-solid border-gray-300
+                                        rounded
+                                        transition
+                                        ease-in-out
+                                        m-0
+                                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            name="Image1" type="file" onchange="viewImage1(event);" id="formFilea">
+
+                        <img class="w-28 h-28" src="" alt="" id="preview2">
+                        <label for="Image" class="form-label inline-block mb-2 text-gray-700">Image-2(add the
+                            front side of the product)</label>
+                        <input class="form-control
+                                        block
+                                        w-full
+                                        px-3
+                                        py-1.5
+                                        text-base
+                                        font-normal
+                                        text-gray-700
+                                        bg-white bg-clip-padding
+                                        border border-solid border-gray-300
+                                        rounded
+                                        transition
+                                        ease-in-out
+                                        m-0
+                                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            name="Image2" type="file" onchange="viewImage2(event);" id="formFile">
+
+                        <img class="w-28 h-28" src="" alt="" id="preview3">
+                        <label for="Image" class="form-label inline-block mb-2 text-gray-700">Image-3(add the
+                            left side of the product)</label>
+                        <input class="form-control
+                                        block
+                                        w-full
+                                        px-3
+                                        py-1.5
+                                        text-base
+                                        font-normal
+                                        text-gray-700
+                                        bg-white bg-clip-padding
+                                        border border-solid border-gray-300
+                                        rounded
+                                        transition
+                                        ease-in-out
+                                        m-0
+                                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            name="Image3" type="file" onchange="viewImage3(event);" id="formFile">
 
 
 
@@ -122,3 +248,19 @@
 
 
 </div>
+
+
+<script>
+    function viewImage1(event) {
+        document.getElementById("preview1").src = URL.createObjectURL(event.target.files[0]);
+
+    }
+    function viewImage2(event) {
+        document.getElementById("preview2").src = URL.createObjectURL(event.target.files[0]);
+
+    }
+    function viewImage3(event) {
+        document.getElementById("preview3").src = URL.createObjectURL(event.target.files[0]);
+
+    }
+</script>

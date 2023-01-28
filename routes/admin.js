@@ -78,28 +78,41 @@ router.get('/view-home',verifyAdminLogin, async(req, res)=>{
 })
 
 router.get('/products',verifyAdminLogin, (req, res) => {
+  let admin = req.session.admin
 
   productHelpers.getAllProductOnAdmin().then((products)=>{
-    res.render('adminPage/view-products', {  products, adminHeader:true });
+    res.render('adminPage/view-products', { admin, products, adminHeader:true });
   });
 });
 
 router.get('/add-products', (req, res) => {
+  let admin = req.session.admin
 
-  res.render('adminPage/add-products', { adminHeader:true });
+  res.render('adminPage/add-products', { admin,adminHeader:true });
 });
 
 router.post('/add-products', (req, res) => {
+  console.log(req.body);
 
   productHelpers.addProducts(req.body, (insertedId) => {
-    const image = req.files.Image;
-    const imageName = insertedId;
+  
+     const imageName = insertedId;
 
-    image.mv(`./public/product-images/${imageName}.jpg`, (err) => {
-      if (!err) {
-        res.render('adminPage/add-products', { adminHeader:true });
-      }
-    });
+    let Image1 = req.files.Image1;
+    Image1.mv('./public/product-Image1/' + imageName + '.jpg')
+
+    let Image2 = req.files.Image2;
+    Image2.mv('./public/product-Image2/' + imageName + '.jpg')
+    let Image3 = req.files.Image3;
+    Image3.mv('./public/product-Image3/' + imageName + '.jpg', (err) => {
+         if (!err) {
+           res.render('adminPage/add-products', { adminHeader:true });
+         }else{
+          console.log(err);
+         }
+       });
+
+
   });
 });
 
@@ -118,10 +131,11 @@ router.get('/delete-product/:id', (req,res)=>{
 })
 
 router.get('/edit-product/:id',async(req,res)=>{
+  let admin = req.session.admin
 
   let productId = req.params.id
   let product = await productHelpers.getProductDetails(productId)
-  res.render('adminPage/edit-products', {  product, adminHeader:true })
+  res.render('adminPage/edit-products', { admin, product, adminHeader:true })
 })
 
 router.post('/edit-product/:id', (req,res)=>{
@@ -141,18 +155,20 @@ router.post('/edit-product/:id', (req,res)=>{
 })
 
 router.get('/user-info', async(req, res)=>{
+  let admin = req.session.admin
 
   let users =await adminHelpers.getAllUsers()
   let count  = users.length
     
-  res.render('adminPage/user-info',{users, adminHeader:true, count})
+  res.render('adminPage/user-info',{admin,users, adminHeader:true, count})
 
  
 })
 
 router.get('/sales-report', async(req, res)=>{
+  let admin = req.session.admin
 
   let salesReport = await adminHelpers.getSalesReport()
-  res.render('adminPage/sales-report',{salesReport,adminHeader:true})
+  res.render('adminPage/sales-report',{admin,salesReport,adminHeader:true})
 })
 module.exports = router;

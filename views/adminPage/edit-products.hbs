@@ -26,7 +26,7 @@
                         ease-in-out
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                    " placeholder="Text input" value="{{product.name}}" name="name" />
+                    " placeholder="Text input" value="{{product.model_name}}" name="name" />
 
                         <label for="Brand" class="form-label inline-block mb-2 text-gray-700">Brand Name</label>
                         <input type="text" class="
@@ -45,7 +45,7 @@
                         ease-in-out
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                    " placeholder="Enter brand" value="{{product.brand}}" name=" brand" />
+                    " placeholder="Enter brand" value="{{product.manufacturer}}" name=" brand" />
 
                         <label for="Description" class="form-label inline-block mb-2 text-gray-700">Description</label>
                         <input type="text" class="
@@ -87,7 +87,7 @@
 
 
                         <label for="Image" class="form-label inline-block mb-2 text-gray-700">Image</label>
-                        <img src="/product-images/{{product._id}}.jpg" alt="">
+                        <img src="/product-image1/{{product._id}}.jpg" id="previewa" alt="">
                         <input class="form-control
     block
     w-full
@@ -103,7 +103,46 @@
     ease-in-out
     m-0
     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" value="" name=" Image" type="file"
-                            id="formFile">
+                            onchange="viewImagea(event);" id=" formFile">
+
+                        {{!-- 2ndomage --}}
+                        <label for="Image" class="form-label inline-block mb-2 text-gray-700">Image</label>
+                        <img src="/product-image2/{{product._id}}.jpg" id="previewb" alt="">
+                        <input class="form-control
+    block
+    w-full
+    px-3
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" value="" name=" Image" type="file"
+                            onchange="viewImageb(event);" id=" formFile">
+                        {{!-- 3rdimage --}}
+                        <label for="Image" class="form-label inline-block mb-2 text-gray-700">Image</label>
+                        <img src="/product-image3/{{product._id}}.jpg" id="previewc" alt="">
+                        <input class="form-control
+    block
+    w-full
+    px-3
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" value="" name=" Image" type="file"
+                            onchange="viewImagec(event);" id=" formFile">
 
 
 
@@ -125,3 +164,19 @@
 
 
 </div>
+
+
+<script>
+    function viewImagea(event) {
+        document.getElementById("previewa").src = URL.createObjectURL(event.target.files[0]);
+
+    }
+    function viewImageb(event) {
+        document.getElementById("previewb").src = URL.createObjectURL(event.target.files[0]);
+
+    }
+    function viewImagec(event) {
+        document.getElementById("previewc").src = URL.createObjectURL(event.target.files[0]);
+
+    }
+</script>
