@@ -88,11 +88,15 @@ router.get('/logout', (req,res)=>{
   res.redirect('/')
 })
 
-router.get('/product-details/:id', verifyLogin, async(req, res)=>{
+router.get('/product-details/:id', async(req, res)=>{
   user = req.session.user
-  console.log("user:"+user._id);
-  cartCount = await userHelpers.getCartCount(user._id)
-  console.log("cart:"+cartCount);
+  if (user) {
+    cartCount = await userHelpers.getCartCount(user._id)
+
+  }else{
+    cartCount = 0
+  }
+  
 
   products = await userHelpers.getDetailsOnProduct(req.params.id)
   console.log(products);
@@ -109,11 +113,18 @@ router.get('/cart',verifyLogin, async(req,res)=>{
   res.render('userspage/cart',{products, user:req.session.user, totalValue})
 })
 
-router.get('/add-to-cart/:id', (req, res)=>{
+router.get('/add-to-cart/:id',verifyLogin, (req, res)=>{
  userHelpers.addToCart(req.params.id, req.session.user._id).then(()=>{
   res.json({status:true})
  }) 
   
+})
+
+router.get('/add-to-cart-product-details/:id',verifyLogin, (req, res)=>{
+  userHelpers.addToCart(req.params.id, req.session.user._id).then(()=>{
+   
+    res.redirect('/cart')
+  })
 })
 
 router.post('/change-product-quantity',(req,res,next)=>{
