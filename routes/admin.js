@@ -13,7 +13,7 @@ const verifyAdminLogin = (req, res, next)=>{
     next()
     
   }else{
-    res.redirect('/admin')
+    res.redirect('/')
   }
 }
 
@@ -71,7 +71,7 @@ router.get('/view-home',verifyAdminLogin, async(req, res)=>{
   allCount.productCount = await adminHelpers.getProductCount()
   allCount.salesCount = await adminHelpers.getSalesCount()
   allCount.orderCount = await adminHelpers.getOrderCount()
-  
+  console.log(allCount);
 
   res.render('adminPage/view-home',{admin,adminHeader:true, allCount} );  
 
@@ -92,8 +92,7 @@ router.get('/add-products', (req, res) => {
 });
 
 router.post('/add-products', (req, res) => {
-  console.log(req.body);
-
+  req.body.price = parseInt(req.body.price)
   productHelpers.addProducts(req.body, (insertedId) => {
   
      const imageName = insertedId;

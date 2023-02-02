@@ -200,7 +200,9 @@ module.exports = {
 getTotalAmount:(userId)=>{
          
   return new Promise(async(resolve, reject) => {
+
  try {
+  console.log("log here");
   let total = await db.get().collection(collection.CART_COLLECTION).aggregate([
     {
         $match:{user:objectId(userId)}
@@ -237,10 +239,11 @@ getTotalAmount:(userId)=>{
  }
 }
 ]).toArray()
-console.log("ln239userhelper"+total);
+console.log(total);
 
 resolve(total[0].total)
- } catch  {
+ } catch (err) {
+  console.log(err);
   let total = 0
   resolve(total)
  }
@@ -271,6 +274,33 @@ placeOrder:(orderDetails,products,total)=>{
 
       resolve(response.insertedId)
     })
+  })
+},
+
+getUserAdress:(userId)=>{
+
+  return new Promise(async(resolve, reject) => {
+    let adress = await db.get().collection(collection.USER_COLLECTION ).aggregate([
+      {
+        $match:{_id:objectId(userId)}
+      },
+      {
+        $lookup: {
+          from:collection.ORDER_COLLECTION,
+          localField:'_id',
+          foreignField:'userId',
+          as:'userAdress'
+        }
+      },
+      {
+        $project: {
+          _id:0,
+          userAdress:1
+        }
+      }
+    ]).toArray()
+    console.log(Object.values(adress) );
+    
   })
 },
 
@@ -376,8 +406,4 @@ getDetailsOnProduct:(productId)=>{
     resolve(product)
   })
 }
-
-
-
-
 };
