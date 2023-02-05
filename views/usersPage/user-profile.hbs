@@ -6,12 +6,12 @@
 
 
 
-        <div class="grid grid-cols-1 sm:grid-cols-5 p-8  items-start gap-6">
+        <div class="grid grid-cols-1 bg-gray-200 sm:grid-cols-5 p-8  items-start gap-6">
 
 
             {{!-- ikjkj --}}
             <div class="col-span-2 bg-white p-4 rounded-lg shadow">
-                <h2 class="text-xl mb-5">Your Account</h2>
+                <h2 class="text-2xl font-extrabold mb-5">Your Account</h2>
                 <div class="mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class=" w-40 h-40" viewBox="0 0 24 24" fill="currentColor"
                         class="w-6 h-6">
@@ -31,10 +31,10 @@
             </div>
 
 
-            <div class="col-span-3 bg-white p-4 rounded-lg shadow">
+            <div class="col-span-3  bg-red-200 p-4 rounded-lg shadow">
                 <!-- Profile Details -->
-                <div class="mb-6">
-                    <h2 class="text-xl mb-5">Your Profile</h2>
+                <div class="mb-4">
+                    <h2 class="text-2xl font-extrabold mb-5">Your Profile</h2>
                     <div class="mb-4">
                         <h1>{{user.name}}</h1>
                     </div>
@@ -45,103 +45,50 @@
                         <h1>{{user.number}}</h1>
                     </div>
                 </div>
+                <hr>
                 <!--/ Profile Details -->
+                {{!-- {{#if address}} --}}
+                <div class="grid place-items-center p-8">
+                    <a href="/add-address">
+                        <button
+                            class="btn-primary bg-black hover:bg-gray-700 rounded-3xl py-3 px-5 text-white active:bg-gray-500">
+                            Add
+                            address
+                        </button>
+                    </a>
+                </div>
+                {{!-- {{else}} --}}
+                {{!-- address card --}}
+                <div class="grid grid-cols-1 sm:grid-cols-2 p-4   gap-4 ">
+                    <div class="flex justify-center">
+                        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                            <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">
+                                {{getAddress.firstName}} {{getAddress.lastName }}
+                            </h5>
 
-                <!-- Billing Address -->
-                <div class="mb-6">
-                    <h2 class="text-xl mb-5">Billing Address</h2>
-                    <div class="flex gap-3">
-                        <div class="mb-4 flex-1">
-                            <input placeholder="Address 1" type="text" name="billing_address_1"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                        <div class="mb-4 flex-1">
-                            <input placeholder="Address 2" type="text" name="billing_address_2"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <div class="mb-4 flex-1">
-                            <input placeholder="City" type="text" name="billing_city"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                        <div class="mb-4 flex-1">
-                            <input placeholder="State" type="text" name="billing_state"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <div class="mb-4 flex-1">
-                            <select placeholder="Country" type="text" name="billing_country"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full">
-                                <option value="">Country</option>
-                                <option value="ge">Georgia</option>
-                                <option value="de">Germany</option>
-                                <option value="in">India</option>
-                                <option value="us">United Kingdom</option>
-                                <option value="uk">United States</option>
-                            </select>
-                        </div>
-                        <div class="mb-4 flex-1">
-                            <input placeholder="Zipcode" type="text" name="billing_zipcode"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
+                            <p class="text-gray-700 text-base mb-4">
+                                {{getAddress.phone}}
+                            </p>
+                            <p class="text-gray-700 text-base mb-4">
+                                {{getAddress.email}}
+                            </p>
+                            <p class="text-gray-700 text-base mb-4">
+                                {{getAddress.areaStreet}}
+                            </p>
+                            <p class="text-gray-700 text-base mb-4">
+                                {{getAddress.pincode}}
+                            </p>
+
+
+                            <button type="button"
+                                class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update</button>
                         </div>
                     </div>
                 </div>
-                <!--/ Billing Address -->
+                {{!-- /address card --}}
 
-                <!-- Shipping Address -->
-                <div class="mb-6">
-                    <div class="flex items-center justify-between mb-5">
-                        <h2 class="text-xl">Shipping Address</h2>
-                        <div class="flex items-center">
-                            <input id="sameAsBillingAddress" type="checkbox"
-                                class="mr-3 rounded border-gray-300 text-purple-500 focus:ring-purple-500" />
-                            <label for="sameAsBillingAddress">Same as Billing</label>
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <div class="mb-4 flex-1">
-                            <input placeholder="Address 1" type="text" name="shipping_address_1"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                        <div class="mb-4 flex-1">
-                            <input placeholder="Address 2" type="text" name="shipping_address_2"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <div class="mb-4 flex-1">
-                            <input placeholder="City" type="text" name="shipping_city"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                        <div class="mb-4 flex-1">
-                            <input placeholder="State" type="text" name="shipping_state"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <div class="mb-4 flex-1">
-                            <select placeholder="Country" type="text" name="shipping_country"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full">
-                                <option value="">Country</option>
-                                <option value="ge">Georgia</option>
-                                <option value="de">Germany</option>
-                                <option value="in">India</option>
-                                <option value="us">United Kingdom</option>
-                                <option value="uk">United States</option>
-                            </select>
-                        </div>
-                        <div class="mb-4 flex-1">
-                            <input placeholder="Zipcode" type="text" name="shipping_zipcode"
-                                class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
-                        </div>
-                    </div>
-                </div>
-                <!--/ Shipping Address -->
 
-                <button
-                    class="btn-primary bg-black hover:bg-gray-700 rounded-3xl py-3 px-5 text-white active:bg-gray-500">Update</button>
+
             </div>
         </div>
     </div>

@@ -1,0 +1,151 @@
+<div class="p-16 ">
+    <div class="grid place-items-center text-2xl font-extrabold mb-5">
+        <p>Add your Address</p>
+
+    </div>
+    <div class="shadow p-8">
+        <form action="/add-profile-address" method="post" class="justify-center  w-full mx-auto" id="checkout-form">
+            <div class="">
+                <div class=" space-x-0 lg:flex lg:space-x-4">
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="firstName" class="block  text-sm font-semibold text-gray-500">
+                            First Name</label>
+                        <input name="firstName" type="text" placeholder="First Name"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="LastName" class="block  text-sm font-semibold text-gray-500">Last
+                            Name</label>
+                        <input name="lastName" type="text" placeholder="Last Name"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+
+                </div>
+
+                <div class="space-x-0 lg:flex lg:space-x-4">
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="Email" class="block  text-sm font-semibold text-gray-500">E-mail
+                        </label>
+                        <input name="email" type="text" placeholder=" E-mail"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="Phone" class="block  text-sm font-semibold text-gray-500">Phone
+                        </label>
+                        <input name="phone" type="text" placeholder=" Phone"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+
+                </div>
+
+
+                <div class="space-x-0 lg:flex lg:space-x-4">
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="pincode" class="block  text-sm font-semibold text-gray-500">Pincode
+                        </label>
+                        <input name="pincode" type="text" placeholder=" Pincode"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="Flat" class="block  text-sm font-semibold text-gray-500">Flat
+                        </label>
+                        <input name="flatBuilding" type="text" placeholder=" Flat.no,House.no,Building,Company"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+                </div>
+
+                <div class="space-x-0 lg:flex lg:space-x-4">
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="Area" class="block  text-sm font-semibold text-gray-500">Area
+                        </label>
+                        <input name="areaStreet" type="text" placeholder=" Area,Street,village"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="Landmark" class="block  text-sm font-semibold text-gray-500">Landmark
+                        </label>
+                        <input name="landmark" type="text" placeholder=" Landmark"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+                </div>
+
+
+                <div class="space-x-0 lg:flex lg:space-x-4">
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="Town" class="block  text-sm font-semibold text-gray-500">Town
+                        </label>
+                        <input name="townCity" type="text" placeholder="City/Town"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+                    <div class="w-full lg:w-1/2 mb-3 ">
+                        <label for="State" class="block  text-sm font-semibold text-gray-500">State
+                        </label>
+                        <input name="state" type="text" placeholder=" State"
+                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                    </div>
+                </div>
+
+                <div class=" grid place-items-center mt-4">
+                    <button class=" rounded-2xl  px-8 py-4 text-white bg-gray-900 hover:bg-gray-700" type="submit">Add
+                        Address</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    {{!-- <form action="/update-address" method="post" class=" bg-white shadow-md rounded px-10 pt-20 pb-20 mb-4 w-full
+                        max-w-lg ">
+        <div class="col-span-3 bg-white p-4 rounded-lg shadow">
+            <!-- Billing Address -->
+            <div class="mb-6">
+                <h2 class="text-xl mb-5">Billing Address</h2>
+                <div class="flex gap-3">
+
+                    <div class="mb-4 flex-1">
+
+                        <input placeholder=" Address 1" type="text" name="billing_address_1"
+                            class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
+                    </div>
+                    <div class="mb-4 flex-1">
+                        <input placeholder="Landmark" type="text" name="billing_landmark"
+                            class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="mb-4 flex-1">
+                        <input placeholder="City" type="text" name="billing_city"
+                            class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
+                    </div>
+                    <div class="mb-4 flex-1">
+                        <input placeholder="State" type="text" name="billing_state"
+                            class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="mb-4 flex-1">
+                        <select placeholder="Country" type="text" name="billing_country"
+                            class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full">
+                            <option value="">Country</option>
+                            <option value="georgia">Georgia</option>
+                            <option value="germany">Germany</option>
+                            <option value="india">India</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="usa">United States</option>
+                        </select>
+                    </div>
+                    <div class="mb-4 flex-1">
+                        <input placeholder="Zipcode" type="text" name="billing_zipcode"
+                            class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full" />
+                    </div>
+                </div>
+            </div>
+            <!--/ Billing Address -->
+            <button class="btn-primary bg-black hover:bg-gray-700 rounded-3xl py-3 px-5 text-white active:bg-gray-500"
+                type="submit">
+                Update
+                Address </button>
+        </div>
+    </form> --}}
+</div>

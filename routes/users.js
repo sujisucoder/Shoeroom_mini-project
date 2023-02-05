@@ -196,12 +196,29 @@ router.post('/verify-payment', (req,res)=>{
   })
 })
 
-router.get('/user-profile', verifyLogin, (req, res)=>{
+router.get('/user-profile', verifyLogin, async(req, res)=>{
  let user = req.session.user
- let adress = userHelpers.getUserAdress(user._id).then()
+ let getAddress = await userHelpers.getUserAddress(req.session.user._id)
+ console.log(getAddress);
  
-  res.render('UsersPage/user-profile', {user})
+  res.render('UsersPage/user-profile', {user,getAddress})
+
+
 })
 
+
+
+router.get('/add-address', verifyLogin, (req, res)=>{
+  res.render('UsersPage/address-add')
+})
+
+router.post('/add-profile-address', verifyLogin, async(req, res)=>{
+  console.log(req.body);
+  let user = req.session.user
+   let address = await userHelpers.addUserAddress(req.body,req.session.user._id).then(()=>{
+  res.redirect('/user-profile')
+   })
+ 
+ })
 
 module.exports = router;

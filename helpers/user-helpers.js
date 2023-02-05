@@ -277,32 +277,7 @@ placeOrder:(orderDetails,products,total)=>{
   })
 },
 
-getUserAdress:(userId)=>{
 
-  return new Promise(async(resolve, reject) => {
-    let adress = await db.get().collection(collection.USER_COLLECTION ).aggregate([
-      {
-        $match:{_id:objectId(userId)}
-      },
-      {
-        $lookup: {
-          from:collection.ORDER_COLLECTION,
-          localField:'_id',
-          foreignField:'userId',
-          as:'userAdress'
-        }
-      },
-      {
-        $project: {
-          _id:0,
-          userAdress:1
-        }
-      }
-    ]).toArray()
-    console.log(Object.values(adress) );
-    
-  })
-},
 
 getCartProductList:(userId)=>{
  return new Promise(async(resolve, reject) => {
@@ -405,5 +380,42 @@ getDetailsOnProduct:(productId)=>{
     
     resolve(product)
   })
+},
+
+addUserAddress:(details,userId)=>{
+
+  let profileDetails = {
+
+    user:objectId(userId),
+    firstName:details.firstName,
+    lastName:details.lastName,
+    email:details.email,
+    phone:details.phone,
+    pincode:details.pincode,
+    flatBuilding:details.flatBuilding,
+    areaStreet:details.areaStreet,
+    landmark:details.landmark,
+    townCity:details.townCity,
+    state:details.state
+
+  }
+
+
+  return new Promise(async(resolve, reject) => {
+
+     let address = db.get().collection(collection.ADDRESS_USER).insertOne(profileDetails).then((response)=>{
+        resolve(response)
+      })
+    })
+ 
+},
+
+getUserAddress:(userId)=>{
+  return new Promise(async(resolve, reject) => {
+    let getAddress =await db.get().collection(collection.ADDRESS_USER).findOne({user:objectId(userId)})
+    console.log(getAddress);
+    resolve(getAddress)
+  })
+  
 }
 };
