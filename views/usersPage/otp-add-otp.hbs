@@ -1,0 +1,28 @@
+<section class="bg-gray-200 h-screen flex justify-center items-center bg-no-repeat bg-center"
+    style="background-image: url(https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80);">
+    <form action="/verify-otp" method="post" class="bg-white shadow-md rounded px-10 pt-20 pb-20 mb-4 w-full max-w-lg ">
+        <div class="text-center text-3xl mb-6 font-bold"><img
+                src="/images/shoeroom-high-resolution-logo-black-on-transparent-background.png" alt="">
+            <h1>Enter OTP </h1>
+        </div>
+        <div class=" mb-4">
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="phone" type="text" value="{{phone}}" name="phone" placeholder="Phone">
+        </div>
+
+        <div class=" mb-4">
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="phone" type="text" name="otp" placeholder="enter your otp">
+        </div>
+
+        <div class="flex items-center justify-center">
+            <button
+                class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4"
+                type="submit">
+                Send OTP
+            </button>
+        </div>
+    </form>
+</section>

@@ -1,5 +1,6 @@
 const { response } = require('express');
 const express = require('express');
+const { FeedbackSummaryList } = require('twilio/lib/rest/api/v2010/account/call/feedbackSummary');
 
 const router = express.Router();
 const productHelpers = require('../helpers/product-helpers');
@@ -7,7 +8,7 @@ const userHelpers = require('../helpers/user-helpers');
 
 // middleware
 const verifyLogin = (req, res, next)=>{
-if(req.session.loggedIn){
+if(req.session.userLoggedIn){
 next()
 }else{
   res.redirect('/login')
@@ -24,12 +25,71 @@ const noCache = (req, res, next)=>{
   next()
 }
 
+// otp
+router.get('/otp-login', noCache, (req, res)=>{
+  if (req.session.userLoggedIn) {
+     user = req.session.user
+    res.redirect('/')
+
+    
+  }else{
+   
+      let logErr = req.session.userLoggError
+      res.render('usersPage/otp-add-number',{logErr})
+    
+   
+  
+  }
+  
+ 
+})
+
+router.post('/otp-login',noCache, (req, res)=>{
+   userHelpers.getDetailsOnOtp(req.body.phone).then((response)=>{
+    // console.log(response)
+  
+    let phone = req.body.phone
+    
+    if(response.phoneFound){
+      
+      req.session.user = response.dbPhone
+      res.render('usersPage/otp-add-otp',{phone})
+    }else{
+      
+      req.session.userLoggError = true
+      res.redirect('/otp-login')
+    }
+
+   })
+
+   router.post('/verify-otp', (req, res)=>{
+    let otp = req.body.otp
+    let phone = req.body.phone
+    
+    userHelpers.verifyOtp(phone,otp).then((response)=>{
+    
+      if(response){
+  
+        req.session.userLoggedIn = true
+        res.redirect('/otp-login')
+      
+      }else{
+        req.session.userLoggError = true
+        res.redirect('/otp-login')
+      }
+    })
+   })
+
+  
+})
+
+
+
 /* GET home page. */
 router.get('/',noCache,  async(req, res, next) => {
     //use no cache here
-  let user = req.session.user
+  let user =  req.session.user
   let cartCount = null
-
   if (user) {
      cartCount = await userHelpers.getCartCount(req.session.user._id)
   }
@@ -45,13 +105,13 @@ router.get('/users', (req, res) => {
 router.get('/login',noCache, (req, res) => {
   //use no cache here
 
-  if (req.session.loggedIn) {
+  if (req.session.userLoggedIn) {
     res.redirect('/')
     
   }else
   
-    res.render('userspage/login',{error:req.session.loggError});
-    req.session.loggError = false
+    res.render('userspage/login',{error:req.session.userLoggError});
+    req.session.userLoggError = false
   
   });
 
@@ -61,7 +121,7 @@ router.get('/signup', (req, res) => {
  
 router.post('/signup', (req, res) => {
   userHelpers.doSignup(req.body).then((response)=>{
-    req.session.loggedIn = true
+    req.session.userLoggedIn = true
     req.session.user = response 
     res.redirect('/login')
   });
@@ -71,12 +131,12 @@ router.post('/signup', (req, res) => {
 router.post('/login', (req,res)=>{
   userHelpers.doLogin(req.body).then((response)=>{
     if (response.status) {
-      req.session.loggedIn =true
+      req.session.userLoggedIn =true
       req.session.user = response.user
       res.redirect('/')
       
     }else{
-      req.session.loggError = true
+      req.session.userLoggError = true
       res.redirect('/login')
     }
   })

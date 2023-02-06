@@ -7,6 +7,13 @@ const { PRODUCT_COLLECTION } = require('../config/collection');
 const objectId = require('mongodb').ObjectId
 const Razorpay = require('razorpay');
 const { resolve } = require('node:path');
+const { log } = require('node:console');
+
+var accountSid = process.env.TWILIO_ACCOUNT_SID; // Your Account SID from www.twilio.com/console
+var authToken = process.env.TWILIO_AUTH_TOKEN;   // Your Auth Token from www.twilio.com/console
+const serviceID = process.env.SERVICE_ID
+
+const client = require('twilio')(accountSid, authToken);
 
 var instance = new Razorpay({
   key_id: 'rzp_test_y6o3hVmuSHhh14',
@@ -53,6 +60,70 @@ module.exports = {
       }
     })
   },
+
+  getDetailsOnOtp:(phone)=>{
+    return new Promise(async(resolve, reject) => {
+      let phoneNumber = phone
+      let dbPhone =await db.get().collection(collection.USER_COLLECTION).findOne({number:phone})
+
+      
+      if (dbPhone===null) {
+        resolve({phoneFound:false})
+        
+      }else{
+          phoneNumber = '+91' + phoneNumber
+
+          client
+          .verify
+          .services(serviceID)
+          .verifications
+          .create(({
+            to: phoneNumber,
+            channel: 'sms'
+          }))
+          .then((data)=>{
+            resolve({phoneFound:true,dbPhone})
+          })
+          .catch((err)=>{
+            console.log(err)
+            resolve({phoneFound:false})
+          })
+      }
+    })
+
+  },
+
+  verifyOtp:(phone, otp)=>{
+    return new Promise(async(resolve, reject) => {
+      phone = '+91' + phone
+
+      if(otp.length === 6){
+        await client
+              .verify
+              .services(serviceID)
+              .verificationChecks
+              .create({
+                to: phone,
+                code: otp
+              })
+              .then((data)=>{
+                
+
+                if(data.status == 'approved'){
+                  otpVerify = true
+                }else{
+                  otpVerify = false
+                }
+              })
+
+      }else{
+        otpVerify =false
+      }
+      resolve(otpVerify)
+      
+    })
+  },
+
   addToCart:(proId,userId)=>{
     let proObj = {
         item:objectId(proId),
