@@ -5,6 +5,8 @@ const { FeedbackSummaryList } = require('twilio/lib/rest/api/v2010/account/call/
 const router = express.Router();
 const productHelpers = require('../helpers/product-helpers');
 const userHelpers = require('../helpers/user-helpers');
+const adminHelpers = require('../helpers/admin-helpers');
+const { AwsInstance } = require('twilio/lib/rest/accounts/v1/credential/aws');
 
 // middleware
 const verifyLogin = (req, res, next)=>{
@@ -27,6 +29,7 @@ const noCache = (req, res, next)=>{
 
 // otp
 router.get('/otp-login', noCache, (req, res)=>{
+
   if (req.session.userLoggedIn) {
      user = req.session.user
     res.redirect('/')
@@ -257,28 +260,49 @@ router.post('/verify-payment', (req,res)=>{
 })
 
 router.get('/user-profile', verifyLogin, async(req, res)=>{
+
  let user = req.session.user
  let getAddress = await userHelpers.getUserAddress(req.session.user._id)
- console.log(getAddress);
- 
-  res.render('UsersPage/user-profile', {user,getAddress})
-
-
+  res.render('usersPage/user-profile', {user,getAddress})
 })
 
 
 
 router.get('/add-address', verifyLogin, (req, res)=>{
-  res.render('UsersPage/address-add')
+  res.render('usersPage/address-add')
 })
 
 router.post('/add-profile-address', verifyLogin, async(req, res)=>{
-  console.log(req.body);
+ 
   let user = req.session.user
    let address = await userHelpers.addUserAddress(req.body,req.session.user._id).then(()=>{
   res.redirect('/user-profile')
    })
  
  })
+
+ router.get('/update-profile/:id', verifyLogin, async(req, res)=>{
+
+    console.log(req.params.id)
+    let user = req.session.user
+    let address = await userHelpers.getUserAddressForUpdate(req.params.id)
+      res.render('usersPage/update-profile',{address,user})
+   
+
+ 
+ })
+
+ router.post('/update-profile', (req, res)=>{
+
+  // console.log(req.body)
+  userHelpers.updateUserAddress(req.body,req.body.addressId)
+  res.redirect('/user-profile')
+ })
+
+router.get('/orders-home',verifyLogin, async(req, res)=>{
+   let order =await adminHelpers.getOrderCount()
+   let cartCount = await userHelpers.getCartCount(req.session.user._id)
+   res.render('usersPage/orders-home',{order,cartCount})
+})
 
 module.exports = router;

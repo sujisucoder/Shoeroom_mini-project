@@ -1,5 +1,4 @@
-{{!-- profile-view --}}
-<main class="p-5">
+{{!-- profile-view --}}<main class="p-5">
 
     <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
 
@@ -59,31 +58,43 @@
                 </div>
                 {{!-- {{else}} --}}
                 {{!-- address card --}}
-                <div class="grid grid-cols-1 sm:grid-cols-2 p-4   gap-4 ">
-                    <div class="flex justify-center">
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1   gap-4 ">
+                    {{#each getAddress}}
+                    <div class="flex  justify-center">
                         <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
                             <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">
-                                {{getAddress.firstName}} {{getAddress.lastName }}
+                                {{this.firstName}}{{this.lastName }}
                             </h5>
 
                             <p class="text-gray-700 text-base mb-4">
-                                {{getAddress.phone}}
+                                {{this.phone}}
                             </p>
                             <p class="text-gray-700 text-base mb-4">
-                                {{getAddress.email}}
+                                {{this.email}}
                             </p>
                             <p class="text-gray-700 text-base mb-4">
-                                {{getAddress.areaStreet}}
+                                {{this.areaStreet}}
                             </p>
                             <p class="text-gray-700 text-base mb-4">
-                                {{getAddress.pincode}}
+                                {{this.pincode}}
                             </p>
 
 
-                            <button type="button"
-                                class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update</button>
+                            <div class="flex flex-row  ">
+
+                                <a href="/update-profile/{{this._id}}">
+                                    <button type="button"
+                                        class=" m-4 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        update </button>
+                                </a>
+
+                                <button type="button"
+                                    class=" m-4  px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">set
+                                    default</button>
+                            </div>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
                 {{!-- /address card --}}
 

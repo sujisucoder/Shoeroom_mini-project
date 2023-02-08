@@ -1,22 +1,23 @@
 <div class="p-16 ">
     <div class="grid place-items-center text-2xl font-extrabold mb-5">
-        <p>Add your Address</p>
+        <p>Update your Address</p>
 
     </div>
+
     <div class="shadow p-8">
-        <form action="/add-profile-address" method="post" class="justify-center  w-full mx-auto" id="checkout-form">
+        <form action="/update-profile" method="post" class="justify-center  w-full mx-auto" id="checkout-form">
             <div class="">
                 <div class=" space-x-0 lg:flex lg:space-x-4">
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="firstName" class="block  text-sm font-semibold text-gray-500">
                             First Name</label>
-                        <input name="firstName" type="text" placeholder="First Name"
+                        <input name="firstName" type="text" placeholder="First Name" value="{{address.firstName}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="LastName" class="block  text-sm font-semibold text-gray-500">Last
                             Name</label>
-                        <input name="lastName" type="text" placeholder="Last Name"
+                        <input name="lastName" type="text" placeholder="Last Name" value="{{address.lastName}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
 
@@ -26,13 +27,13 @@
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="Email" class="block  text-sm font-semibold text-gray-500">E-mail
                         </label>
-                        <input name="email" type="text" placeholder=" E-mail"
+                        <input name="email" type="text" placeholder=" E-mail" value="{{address.email}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="Phone" class="block  text-sm font-semibold text-gray-500">Phone
                         </label>
-                        <input name="phone" type="text" placeholder=" Phone"
+                        <input name="phone" type="text" placeholder=" Phone" value="{{address.phone}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
 
@@ -43,13 +44,14 @@
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="pincode" class="block  text-sm font-semibold text-gray-500">Pincode
                         </label>
-                        <input name="pincode" type="text" placeholder=" Pincode"
+                        <input name="pincode" type="text" placeholder=" Pincode" value="{{address.pincode}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="Flat" class="block  text-sm font-semibold text-gray-500">Flat
                         </label>
                         <input name="flatBuilding" type="text" placeholder=" Flat.no,House.no,Building,Company"
+                            value="{{address.flatBuilding}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                 </div>
@@ -59,12 +61,13 @@
                         <label for="Area" class="block  text-sm font-semibold text-gray-500">Area
                         </label>
                         <input name="areaStreet" type="text" placeholder=" Area,Street,village"
+                            value="{{address.areaStreet}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="Landmark" class="block  text-sm font-semibold text-gray-500">Landmark
                         </label>
-                        <input name="landmark" type="text" placeholder=" Landmark"
+                        <input name="landmark" type="text" placeholder=" Landmark" value="{{address.landmark}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                 </div>
@@ -74,14 +77,17 @@
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="Town" class="block  text-sm font-semibold text-gray-500">Town
                         </label>
-                        <input name="townCity" type="text" placeholder="City/Town"
+                        <input name="townCity" type="text" placeholder="City/Town" value="{{address.townCity}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="w-full lg:w-1/2 mb-3 ">
                         <label for="State" class="block  text-sm font-semibold text-gray-500">State
                         </label>
-                        <input name="state" type="text" placeholder=" State"
+                        <input name="state" type="text" placeholder=" State" value="{{address.state}}"
                             class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+
+                        <input name="addressId" type="text" placeholder=" id" value="{{address._id}}"
+                            class=" hidden w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                 </div>
 

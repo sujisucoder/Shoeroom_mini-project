@@ -23,16 +23,16 @@
                     <p class="text-xs leading-3 text-gray-800 dark:text-black md:pt-0 pt-4">
                     </p>
                     <div class="flex items-center justify-between w-full">
-                        <p class="text-base font-black leading-none text-gray-800 dark:text-black">
-                            {{this.product.model_name}}
+                        <p class=" font-black leading-none text-gray-800 dark:text-black">
+                            <span class="w-6 h-2"> {{this.product.model_name}}</span>
 
                         </p>
-                        <div>
+                        <div class="flex flex-row">
                             <button
                                 onclick="changeQuantity('{{this._id}}', '{{this.product._id}}','{{../user._id}}',-1)"
                                 class="py-2 px-2.5 border border-gray-200  focus:outline-none dark:bg-gray-200
                                 dark:hover:bg-gray-300 dark:text-black">-</button>
-                            <span id="{{this.product._id}}">{{this.quantity}}</span><button
+                                    <span id="{{this.product._id}}">{{this.quantity}}</span> <button
                                 onclick="changeQuantity('{{this._id}}', '{{this.product._id}}','{{../user._id}}',1)"
                                 class="py-2 px-2.5 border border-gray-200  focus:outline-none dark:bg-gray-200 
                                 dark:hover:bg-gray-300 dark:text-black">+</button>

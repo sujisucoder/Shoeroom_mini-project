@@ -98,12 +98,21 @@
             <a href="/product-details/{{this._id}}" data-mdb-ripple="true" data-mdb-ripple-color="light">
                 <img class="rounded-t-lg" src="/product-Image1/{{this._id}}.jpg" alt="" />
             </a>
-            <div class="p-6">
-                <h8 class="text-gray-900 w-48 h-14 text-xl font-medium mb-2">{{this.model_name}}</h8>
-                <h5 class="text-gray-900 w-38 h-7 font-medium mb-2">{{this.manufacturer}}</h5>
-                <p class="text-gray-700 text-base mb-4">₹
-                    {{this.price}}
-                </p>
+            <div class=" p-6">
+                <div class="truncate hover:text-clip  ">
+                    <h8 class="   text-gray-900 text-xl font-medium mb-2">
+                        {{this.model_name}}
+                    </h8>
+                </div>
+                <div class="">
+                    <h5 class="text-gray-900  font-medium mb-2">{{this.manufacturer}}</h5>
+                </div>
+                <div class="">
+                    <p class="text-gray-700 text-base mb-4">₹
+                        {{this.price}}
+                    </p>
+                </div>
+
                 <div class="flex items-center justify-center">
                     <a> <button type=" button" onclick="addToCart('{{this._id}}')"
                             class="  px-28 py-2.5 lg:px-10 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-grey-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-700 active:shadow-lg transition duration-150 ease-in-out">Add
@@ -119,4 +128,3 @@
 
 
 </div>
-{{!-- /cards --}}

@@ -483,10 +483,41 @@ addUserAddress:(details,userId)=>{
 
 getUserAddress:(userId)=>{
   return new Promise(async(resolve, reject) => {
-    let getAddress =await db.get().collection(collection.ADDRESS_USER).findOne({user:objectId(userId)})
-    console.log(getAddress);
+
+    let getAddress =await db.get().collection(collection.ADDRESS_USER).find({user:objectId(userId)}).toArray()
     resolve(getAddress)
   })
   
+},
+
+getUserAddressForUpdate:(addressId)=>{
+  return new Promise(async(resolve, reject) => {
+
+    let address = await db.get().collection(collection.ADDRESS_USER).findOne({_id:objectId(addressId)})
+      resolve(address)
+    
+  })
+},
+
+updateUserAddress:(address,addressId)=>{
+  return new Promise(async(resolve, reject) => {
+   let addressof = await db.get().collection(collection.ADDRESS_USER).updateOne({_id:objectId(addressId)},{
+      $set:{
+        
+        firstName:address.firstName,
+        lastName:address.lastName,
+        email:address.email,
+        phone:address.phone,
+        pincode:address.pincode,
+        flatBuilding:address.flatBuilding,
+        areaStreet:address.areaStreet,
+        landmark:address.landmark,
+        townCity:address.townCity,
+        state:address.state
+      }
+
+    })
+    console.log(addressof)
+  })
 }
 };
