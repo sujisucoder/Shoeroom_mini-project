@@ -118,17 +118,6 @@ router.get('/login',noCache, (req, res) => {
   
   });
 
-router.get('/signup', (req, res) => {
-  res.render('userspage/signup');
-});
- 
-router.post('/signup', (req, res) => {
-  userHelpers.doSignup(req.body).then((response)=>{
-    req.session.userLoggedIn = true
-    req.session.user = response 
-    res.redirect('/login')
-  });
-});
 
 
 router.post('/login', (req,res)=>{
@@ -144,7 +133,22 @@ router.post('/login', (req,res)=>{
     }
   })
 
-})
+})  
+
+router.get('/signup', (req, res) => {
+  res.render('userspage/signup');
+});
+ 
+router.post('/signup', (req, res) => {
+  userHelpers.doSignup(req.body).then((response)=>{
+    req.session.userLoggedIn = true
+    req.session.user = response 
+    res.redirect('/login')
+  });
+});
+
+
+
 
 router.get('/logout', (req,res)=>{
   req.session.destroy()

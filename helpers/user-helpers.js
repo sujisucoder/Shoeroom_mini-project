@@ -21,40 +21,66 @@ var instance = new Razorpay({
 })
 
 module.exports = {
-  doSignup: (userdata) => new Promise(async(resolve, reject) => {
-  
-    console.log(userdata);
-    hashPassword = await bcrypt.hash(userdata.password, 10);
-    userdata.password = hashPassword;
+  doSignup: (userdata) => {
+   return new Promise(async(resolve, reject) => {
+    //code changed
     delete userdata.confpassword;
-   
-    
-    console.log(hashPassword);
-     db.get().collection(collection.USER_COLLECTION).insertOne(userdata).then((data) => {
-         resolve(data.insertedId);
-     });
-  }),
 
+    let phoneExist = await db.get().collection(collection.USER_COLLECTION).findOne({phone: userdata.phone})
+  
+    if (phoneExist == null ) {
+      return new Promise(async(resolve, reject) => {
+        console.log(userdata);
+        hashPassword = await bcrypt.hash(userdata.password, 10);
+        userdata.password = hashPassword;
+        console.log(hashPassword);
+        db.get().collection(collection.USER_COLLECTION).insertOne(userdata).then((data) => {
+            resolve(data.insertedId);
+        }).catch((error)=>{
+          reject(error)
+        })
+                
+      })
+      .then((data)=>{
+        resolve(data)
+      }).catch((error)=>{
+        reject(error)
+      })
+      
+    }else{
+      resolve({ phoneFound: true})
+    }  
+
+    })
+  
+  },
+  
   doLogin: (userdata)=>{
     return new Promise(async(resolve, reject) => {
-      let response ={}
       let loginStatus = false
+      let response ={}
       let user = await db.get().collection(collection.USER_COLLECTION).findOne({email:userdata.email})
       if (user) {
-        bcrypt.compare(userdata.password, user.password).then((status) => {
-          if (status) {
-            console.log("login successful");
-            response.user = user
-            response.status = true
-            resolve(response)
-          }else{
-            console.log("login failed");
-            resolve({status:false})
-          }
-      });
+        //changed
+        if(user.block){
+          console.log("user is blocked")
+          resolve({status: false})
+        }else{
+          bcrypt.compare(userdata.password, user.password).then((status) => {
+            if (status) {
+              console.log("login successful");
+              response.user = user
+              response.status = true
+              resolve(response)
+            }else{
+              console.log("login failed");
+              resolve({status:false})
+            }
+        });
+        }
         
       }else{
-        console.log("login failed");
+        console.log("login failed (no user exist)");
         resolve({status:false})
 
       }
@@ -517,7 +543,7 @@ updateUserAddress:(address,addressId)=>{
       }
 
     })
-    console.log(addressof)
+   
   })
 }
 };

@@ -99,6 +99,38 @@ module.exports = {
         
     },
 
+    blockUser:(userId)=>{
+        return new Promise((resolve, reject) => {
+             db.get().collection(collection.USER_COLLECTION).updateOne({_id: objectId(userId)},{
+                
+                $set:
+                {
+                    block: true
+                } 
+                
+            }).then((response)=>{
+                console.log("block resolved")
+                resolve()
+            })
+        })
+    },
+
+    unblockUser:(userId)=>{
+        return new Promise(async(resolve, reject) => {
+            await db.get().collection(collection.USER_COLLECTION).updateOne({_id: objectId(userId)},{
+                
+                $set:
+                {
+                    block: false
+                } 
+                
+            }).then((response)=>{
+                
+                resolve()
+            })
+        })
+    },
+
     getSalesReport:()=>{
         return new Promise(async(resolve, reject) => {
             let sales = await db.get().collection(collection.ORDER_COLLECTION).find().toArray()

@@ -25,6 +25,9 @@
                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
                                 Number
                             </th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                User Block/Unblock
+                            </th>
 
 
                         </tr>
@@ -39,6 +42,21 @@
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> {{this.email}}
                             </td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{this.number}}
+                            </td>
+                            <td>
+                                {{#if this.block}}
+                                <a href="/admin/user-unblock/{{this._id}}"><button
+                                        class=" rounded-2xl  px-4 py-2 text-white bg-gray-900 hover:bg-gray-700">
+                                        Unblock</button>
+                                </a>
+
+                                {{else}}
+                                <a href="/admin/user-block/{{this._id}}"><button
+                                        class=" rounded-2xl  px-4 py-2 text-white bg-gray-900 hover:bg-gray-700">
+                                        Block</button>
+                                </a>
+
+                                {{/if}}
                             </td>
 
                         </tr class="bg-white border-b">

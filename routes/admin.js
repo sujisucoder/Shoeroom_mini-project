@@ -5,6 +5,7 @@ const adminHelpers = require('../helpers/admin-helpers')
 const { route } = require('./users');
 const excelJs = require("exceljs");
 const { response } = require('../app');
+const { AwsInstance } = require('twilio/lib/rest/accounts/v1/credential/aws');
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ const verifyAdminLogin = (req, res, next)=>{
     next()
     
   }else{
-    res.redirect('/')
+    res.redirect('/admin')
   }
 }
 
@@ -153,7 +154,7 @@ router.post('/edit-product/:id', (req,res)=>{
   })
 })
 
-router.get('/user-info', async(req, res)=>{
+router.get('/user-info',verifyAdminLogin, async(req, res)=>{
   let admin = req.session.admin
 
   let users =await adminHelpers.getAllUsers()
@@ -163,6 +164,30 @@ router.get('/user-info', async(req, res)=>{
 
  
 })
+
+router.get('/user-block/:id',verifyAdminLogin, (req, res)=>{
+    let userId = req.params.id
+    console.log("userId ")
+    console.log(userId)
+
+    adminHelpers.blockUser(userId).then(()=>{
+      let admin = req.session.admin
+          console.log("happy anu")
+          res.redirect('../user-info')
+     
+    })
+})
+
+router.get('/user-unblock/:id',verifyAdminLogin, (req, res)=>{
+  
+  let userId = req.params.id
+  adminHelpers.unblockUser(userId).then(()=>{
+    res.redirect('../user-info')
+  })
+  
+})
+
+
 
 router.get('/sales-report', async(req, res)=>{
   let admin = req.session.admin
