@@ -49,7 +49,7 @@ router.get('/otp-login', noCache, (req, res)=>{
 
 router.post('/otp-login',noCache, (req, res)=>{
    userHelpers.getDetailsOnOtp(req.body.phone).then((response)=>{
-    // console.log(response)
+
   
     let phone = req.body.phone
     
@@ -245,10 +245,12 @@ router.get('/orders-list', async(req,res)=>{
 })
 
 router.get('/view-order-products/:id',async(req,res)=>{
-  console.log(req.params.id);
+
+  let user = req.session.user
+
   let products =await userHelpers.orderProducts(req.params.id)
   console.log(products);
-   res.render('UsersPage/view-order-products',{products})
+   res.render('UsersPage/view-order-products',{products, user })
 })
 
 router.post('/verify-payment', (req,res)=>{
@@ -267,27 +269,44 @@ router.get('/user-profile', verifyLogin, async(req, res)=>{
 
  let user = req.session.user
  let getAddress = await userHelpers.getUserAddress(req.session.user._id)
-  res.render('usersPage/user-profile', {user,getAddress})
+ let cartCount = await userHelpers.getCartCount(req.session.user._id)
+  res.render('usersPage/user-profile', {user,cartCount,getAddress})
 })
 
 
 
-router.get('/add-address', verifyLogin, (req, res)=>{
-  res.render('usersPage/address-add')
+router.get('/add-address', verifyLogin, async(req, res)=>{
+  let user = req.session.user
+  let cartCount = await userHelpers.getCartCount(req.session.user._id)
+
+  res.render('usersPage/address-add',{user,cartCount})
 })
 
 router.post('/add-profile-address', verifyLogin, async(req, res)=>{
+
+  req.body.default = false;
  
-  let user = req.session.user
-   let address = await userHelpers.addUserAddress(req.body,req.session.user._id).then(()=>{
-  res.redirect('/user-profile')
-   })
- 
+   await userHelpers.addUserAddress(req.body,req.session.user._id)
+   .then(()=>
+   {
+      res.redirect('/user-profile')
+    })
  })
 
+ //default address 
+
+ router.get('/add-default-address/:id', (req, res)=>{
+    let user = req.session.user
+    let addressId = req.params.id
+
+
+    
+ })
+
+
+//  profile update
  router.get('/update-profile/:id', verifyLogin, async(req, res)=>{
 
-    console.log(req.params.id)
     let user = req.session.user
     let address = await userHelpers.getUserAddressForUpdate(req.params.id)
       res.render('usersPage/update-profile',{address,user})
@@ -298,15 +317,44 @@ router.post('/add-profile-address', verifyLogin, async(req, res)=>{
 
  router.post('/update-profile', (req, res)=>{
 
-  // console.log(req.body)
   userHelpers.updateUserAddress(req.body,req.body.addressId)
   res.redirect('/user-profile')
  })
 
 router.get('/orders-home',verifyLogin, async(req, res)=>{
+   let user = req.session.user 
+
    let order =await adminHelpers.getOrderCount()
    let cartCount = await userHelpers.getCartCount(req.session.user._id)
-   res.render('usersPage/orders-home',{order,cartCount})
+   let orders = await userHelpers.getUserOrderList(req.session.user._id)
+
+   res.render('usersPage/orders-home',{order,cartCount,orders,user})
+})
+
+router.get('/view-order-cancel/:id', verifyLogin, async(req, res)=>{
+ 
+  let orderId = req.params.id
+  let user = req.session.user 
+  let cartCount = await userHelpers.getCartCount(req.session.user._id)
+
+  let products =await userHelpers.orderProducts(orderId)
+ let order = await userHelpers.getUserOrderListByOrderId(orderId)
+ if (order[0].status == 'cancelled') {
+  orderCancel = true
+}else{
+  orderCancel = false
+}
+
+  let address = order[0].deliveryDetails
+
+  res.render('usersPage/order-details-cancelButton',{user, products, address, orderCancel, orderId, cartCount})
+})
+
+router.get('/cancel-order/:id', verifyLogin, async(req, res)=>{
+ 
+  await userHelpers.cancelOrder(req.params.id)
+
+res.redirect('/orders-home')
 })
 
 module.exports = router;

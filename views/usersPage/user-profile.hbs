@@ -46,7 +46,7 @@
                 </div>
                 <hr>
                 <!--/ Profile Details -->
-                {{!-- {{#if address}} --}}
+
                 <div class="grid place-items-center p-8">
                     <a href="/add-address">
                         <button
@@ -56,12 +56,16 @@
                         </button>
                     </a>
                 </div>
-                {{!-- {{else}} --}}
+
                 {{!-- address card --}}
                 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1   gap-4 ">
                     {{#each getAddress}}
                     <div class="flex  justify-center">
                         <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                            {{#if this.default}}
+                            <h3 class="py-2 font-semibold text-green-600">default</h3>
+                            {{/if}}
+
                             <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">
                                 {{this.firstName}}{{this.lastName }}
                             </h5>
@@ -88,9 +92,11 @@
                                         update </button>
                                 </a>
 
-                                <button type="button"
-                                    class=" m-4  px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">set
-                                    default</button>
+                                <a href="/add-default-address/{{this._id}}">
+                                    <button type="button"
+                                        class=" m-4  px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">set
+                                        default</button>
+                                </a>
                             </div>
                         </div>
                     </div>

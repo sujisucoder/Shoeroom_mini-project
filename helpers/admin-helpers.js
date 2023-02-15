@@ -109,7 +109,6 @@ module.exports = {
                 } 
                 
             }).then((response)=>{
-                console.log("block resolved")
                 resolve()
             })
         })

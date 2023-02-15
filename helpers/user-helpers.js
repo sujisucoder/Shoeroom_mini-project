@@ -386,7 +386,7 @@ getCartProductList:(userId)=>{
 getUserOrderList:(userId)=>{
   return new Promise(async(resolve, reject) => {
    let orders =await db.get().collection(collection.ORDER_COLLECTION).find({userId:objectId(userId)}).toArray()
-    console.log(orders);
+    
     resolve(orders)
   })
 },
@@ -421,7 +421,7 @@ orderProducts:(orderId)=>{
       }
 
     ]).toArray()
-    console.log(products);
+
     resolve(products)
   })
   
@@ -431,7 +431,7 @@ generateRazorpay:(orderId , amount)=>{
   return new Promise(async(resolve, reject) => {
 
   let order =await  instance.orders.create({
-      amount: amount,
+      amount: amount*100,
       currency: "INR",
       receipt: ""+orderId,
     })
@@ -493,8 +493,8 @@ addUserAddress:(details,userId)=>{
     areaStreet:details.areaStreet,
     landmark:details.landmark,
     townCity:details.townCity,
-    state:details.state
-
+    state:details.state,
+    default:details.default
   }
 
 
@@ -545,5 +545,34 @@ updateUserAddress:(address,addressId)=>{
     })
    
   })
+},
+
+getUserOrderListByOrderId:(orderId)=>{
+  return new Promise(async(resolve, reject) => {
+   let orders =await db.get().collection(collection.ORDER_COLLECTION).find({_id:objectId(orderId)}).toArray()
+   console.log(orders);
+    resolve(orders)
+  })
+},
+
+cancelOrder:(orderId)=>{
+  return new Promise((resolve, reject) => {
+      let orderCancel =   db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)}, 
+    {
+      $set:{
+        status: "cancelled"
+      }
+      
+    })
+    .then((response)=>{
+
+
+      resolve()
+
+    }).catch((error)=>{
+      reject(error)
+    })
+  })
 }
+
 };

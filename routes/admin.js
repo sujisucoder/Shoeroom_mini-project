@@ -167,12 +167,10 @@ router.get('/user-info',verifyAdminLogin, async(req, res)=>{
 
 router.get('/user-block/:id',verifyAdminLogin, (req, res)=>{
     let userId = req.params.id
-    console.log("userId ")
     console.log(userId)
 
     adminHelpers.blockUser(userId).then(()=>{
       let admin = req.session.admin
-          console.log("happy anu")
           res.redirect('../user-info')
      
     })
