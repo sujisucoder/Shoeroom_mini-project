@@ -1,5 +1,7 @@
 <header>
-    <nav class="
+   
+<nav
+  class="
   relative
   w-full
   flex flex-wrap
@@ -12,137 +14,145 @@
   focus:text-gray-700
   shadow-lg
   navbar navbar-expand-lg navbar-light
-  ">
-        <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
-            <button class="
-      navbar-toggler
-      text-gray-500
-      border-0
-      hover:shadow-none hover:no-underline
-      py-2
-      px-2.5
-      bg-transparent
-      focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline
-    " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="w-6" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path fill="currentColor"
-                        d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
-                    </path>
-                </svg>
-            </button>
-            <div class="collapse navbar-collapse flex-grow gap-20 items-center" id="navbarSupportedContent">
-                <a class="
-        flex
-        items-center
-        text-gray-900
-        hover:text-gray-900
-        focus:text-gray-900
-        mt-2
-        lg:mt-0
-        mr-1
-      " href="/admin/view-home">
-                    <img src="/images/shoeroom-high-resolution-logo-white-on-transparent-background.png"
-                        style="height: 45px" alt="" loading="lazy" /> <span class=" text-red-500"></span>
-                </a>
-                <!-- Left links -->
-
-                <ul class="  navbar-nav flex justify-items: center;  flex-col pl-0 list-style-none mr-auto">
-                    <li class="nav-item p-2">
-                        <a class=" flex items-center nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                            href="/admin/user-info">
-                            User-info
-                        </a>
-                    </li>
-
-                    <li class="nav-item p-2">
-                        <a class=" flex items-center nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                            href="/admin/sales-report">
-                            Sales-report
-                        </a>
-                    </li>
-
-                    <li class="nav-item p-2">
-                        <a class=" flex items-center nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                            href="/orders">
-                            Orders
-                        </a>
-                    </li>
-
-                    <li class="nav-item p-2">
-                        <a class=" flex items-center nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
-                            href="/admin/products">
-                            Products
-                        </a>
-                    </li>
+  "
+  data-te-navbar-ref>
+  <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+    <button
+      class="block border-0 bg-transparent py-2 px-2.5 text-neutral-200 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 lg:hidden"
+      type="button"
+      data-te-collapse-init
+      data-te-target="#navbarSupportedContent4"
+      aria-controls="navbarSupportedContent4"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="[&>svg]:w-7">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="h-7 w-7">
+          <path
+            fill-rule="evenodd"
+            d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+            clip-rule="evenodd" />
+        </svg>
+      </span>
+    </button>
+    <div
+      class="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto"
+      id="navbarSupportedContent4"
+      data-te-collapse-item>
+      <a class="pr-2 text-xl font-semibold text-white" href="/admin/view-home">
+         <img src="/images/shoeroom-high-resolution-logo-white-on-transparent-background.png"
+            style="height: 45px" alt="" loading="lazy" />      
+      </a>
+      <!-- Left links -->
+      <ul
+        class=" navbar-nav   list-style-none    list-style-none mr-auto flex flex-col pl-0  sm:pl-32 lg:flex-row "
+        data-te-navbar-nav-ref>
+        <li class="nav-item p-2" data-te-nav-item-ref>
+          <a
+             class=" flex items-center nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+             href="/admin/user-info"
+             data-te-nav-link-ref
+            >
+             User-info
+          </a>
 
 
-                </ul>
-
-                <!-- Left links -->
-            </div>
-            <!-- Collapsible wrapper -->
-
-            <!-- Right elements -->
-            <div class="flex items-center gap-4 relative">
 
 
-                <!--ACCOUNT Icon -->
-                <div class="dropdown relative">
-                    <a class="dropdown-toggle flex items-center hidden-arrow" href="#" id="dropdownMenuButton2"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+
+
+        </li>
+
+         <li class="nav-item p-2" data-te-nav-item-ref>
+                                <a
+             class=" flex items-center nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+             href="/admin/sales-report"
+             data-te-nav-link-ref
+            >
+             Sales-report
+          </a>
+         </li>
+
+          <li class="nav-item p-2" data-te-nav-item-ref>
+                    <a
+             class=" flex items-center nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+             href="/orders"
+             data-te-nav-link-ref
+            >
+             Orders
+          </a>
+          </li>
+
+          <li class="nav-item p-2" data-te-nav-item-ref>
+                    <a
+             class=" flex items-center nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+             href="/admin/products"
+             data-te-nav-link-ref
+            >
+             Products
+          </a>
+          </li>
+
+
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="gap-4  relative flex items-center">
+
+      <!-- Icon -->
+
+      <div class="relative" data-te-dropdown-ref>
+        <a
+          class="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
+          href="#"
+          id="dropdownMenuButton2"
+          role="button"
+          data-te-dropdown-toggle-ref
+          aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                         </svg>
+                                     
+                         {{admin.name}}
 
-                        {{admin.name}}
-                    </a>
-                    <ul class="
-    dropdown-menu
-    min-w-max
-    absolute
-    hidden
-    bg-white
-    text-base
-    z-50
-    float-left
-    py-2
-    list-none
-    text-left
-    rounded-lg
-    shadow-lg
-    mt-1
-    hidden
-    m-0
-    bg-clip-padding
-    border-none
-    left-auto
-    right-0
-  " aria-labelledby="dropdownMenuButton2">
-                        <li>
-                            <a class="
-        dropdown-item
-        text-sm
-        py-2
-        px-4
-        font-normal
-        block
-        w-full
-        whitespace-nowrap
-        bg-transparent
-        text-gray-700
-        hover:bg-gray-100
-      " href="/admin/admin-logout">Logout</a>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
-            <!-- /Right elements -->
-        </div>
-    </nav>
+        </a>
+        <ul
+          class="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
+          aria-labelledby="dropdownMenuButton2"
+          data-te-dropdown-menu-ref>
+          <li>
+            
+            <a
+              class="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+              href="/admin/admin-logout"
+              data-te-dropdown-item-ref
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Right elements -->
+  </div>
+</nav>
 </header>
+
+
+
+
+
+
+
+
+
+
+

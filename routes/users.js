@@ -256,7 +256,7 @@ router.get('/view-order-products/:id',async(req,res)=>{
 router.post('/verify-payment', (req,res)=>{
   console.log(req.body);
   userHelpers.verifyPayment(req.body).then(()=>{
-    userHelpers.changePaymentStatus(req.body['order[receipt]']).then(()=>{
+    userHelpers.changtePaymentStatus(req.body['order[receipt]']).then(()=>{
       console.log('payment successful');
       res.json({status:true})
     })
