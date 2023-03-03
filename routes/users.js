@@ -172,12 +172,19 @@ router.get('/product-details/:id', async(req, res)=>{
 
 router.get('/cart',verifyLogin, async(req,res)=>{
   let products = await userHelpers.getAllProductOnUser(req.session.user._id)
+  let placeOrderButton= false
   let totalValue = 0
-  if (products.length>0) {
-     totalValue = await userHelpers.getTotalAmount(req.session.user._id)
-  }
 
-  res.render('userspage/cart',{products, user:req.session.user, totalValue})
+  if (totalValue===0) {
+     placeOrderButton=true
+  } 
+  if (products.length>0) {
+    totalValue = await userHelpers.getTotalAmount(req.session.user._id)
+    placeOrderButton =false
+ }
+    console.log("place order button:"+placeOrderButton);
+
+  res.render('userspage/cart',{products, user:req.session.user, totalValue, placeOrderButton})
 })
 
 router.get('/add-to-cart/:id',verifyLogin, (req, res)=>{
@@ -213,8 +220,11 @@ router.post('/remove-product',(req,res)=>{
 
 router.get('/place-order',verifyLogin,async(req,res)=>{
   let total = await userHelpers.getTotalAmount(req.session.user._id)
+  let userAddress = await userHelpers.getUserAddress(req.session.user._id)
+  let address = userAddress[0]
+
    
-  res.render('userspage/place-order',{total,user:req.session.user})
+  res.render('userspage/place-order',{total,user:req.session.user,address})
 })
 
 router.post('/place-order', async(req,res)=>{
@@ -254,9 +264,10 @@ router.get('/view-order-products/:id',async(req,res)=>{
 })
 
 router.post('/verify-payment', (req,res)=>{
+  console.log("look for verify payment")
   console.log(req.body);
   userHelpers.verifyPayment(req.body).then(()=>{
-    userHelpers.changtePaymentStatus(req.body['order[receipt]']).then(()=>{
+    userHelpers.changePaymentStatus(req.body['order[receipt]']).then(()=>{
       console.log('payment successful');
       res.json({status:true})
     })
@@ -299,6 +310,37 @@ router.post('/add-profile-address', verifyLogin, async(req, res)=>{
     let user = req.session.user
     let addressId = req.params.id
 
+    userHelpers.changeDefaultAddress(addressId, user._id).then(()=>{
+
+        userHelpers.changeDefaultAddress1(addressId).then(()=>{
+
+          res.redirect('../user-profile')
+
+        })
+
+    })
+
+    // router.get('/deleteAddress', verifyLogin, (req, res)=>{
+
+    //   console.log("address Id up")
+
+    // })
+
+router.get('/remove-address/:id', (req, res)=>{
+  let addressId = req.params.id
+  console.log("remove request")
+  console.log(addressId)
+    userHelpers.removeAddress(addressId).then(()=>{
+      res.redirect('../user-profile')
+    })
+
+})
+
+// router.get('/useless', (req,res)=>{
+//   let user = req.session.user
+//   console.log("useless link");
+//   console.log(user);
+// })
 
     
  })

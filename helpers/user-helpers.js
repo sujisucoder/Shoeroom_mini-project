@@ -378,6 +378,7 @@ placeOrder:(orderDetails,products,total)=>{
 
 getCartProductList:(userId)=>{
  return new Promise(async(resolve, reject) => {
+  
   let cart = await db.get().collection(collection.CART_COLLECTION).findOne({user:objectId(userId)})
   resolve(cart.products)
  })
@@ -544,6 +545,47 @@ updateUserAddress:(address,addressId)=>{
 
     })
    
+  })
+},
+
+changeDefaultAddress:(addressId,userId)=>{
+    return new Promise((resolve, reject) => {
+      db.get().collection(collection.ADDRESS_USER).updateOne({ userId:objectId(userId), default: true},
+        {
+          $set: {
+            default:false
+          }
+          }).then((response)=>{
+            resolve()
+        })
+    })
+},
+
+changeDefaultAddress1:(addressId)=>{
+
+  return new Promise((resolve, reject) => {
+    try {
+      db.get().collection(collection.ADDRESS_USER).updateOne({_id:objectId(addressId)},
+     {
+      $set:{
+        default:true
+      }
+     }
+      ).then((response)=>{
+        resolve()
+      })
+    } catch  {
+      reject()
+      
+    }
+  })
+
+},
+
+removeAddress:(addressId)=>{
+  return new Promise((resolve, reject) => {
+    console.log("welcome to remove address")
+    db.get().collection(collection.ADDRESS_USER).deleteOne({_id:objectId(addressId)})
   })
 },
 

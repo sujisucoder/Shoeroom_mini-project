@@ -46,9 +46,7 @@
                     </p>
                     <div class="flex items-center justify-between pt-5">
                         <div class="flex itemms-center">
-                            <p class="text-xs leading-3 underline text-gray-800 dark:text-black cursor-pointer">
-                                Add
-                                to favorites</p>
+
                             <a onclick="removeProduct('{{this._id}}','{{this.product._id}}')"
                                 class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">Remove</a>
                         </div>
@@ -76,12 +74,23 @@
                             ₹ <span id="totalValue"> {{totalValue}}</span>
                         </p>
                     </div>
+                    {{#if placeOrderButton}}
+
+                    <button
+                        class="text-base leading-none w-full py-5 bg-black border-gray-300 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700">
+                        <a href="#">
+                            Checkout
+                        </a>
+                    </button>
+                    {{else}}
+
                     <button
                         class="text-base leading-none w-full py-5 bg-black border-gray-300 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700">
                         <a href="/place-order">
                             Checkout
                         </a>
                     </button>
+                    {{/if}}
                 </div>
             </div>
         </div>

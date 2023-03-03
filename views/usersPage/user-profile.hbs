@@ -1,4 +1,5 @@
-{{!-- profile-view --}}<main class="p-5">
+{{!-- profile-view --}}
+<main class="p-5">
 
     <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
 
@@ -60,11 +61,21 @@
                 {{!-- address card --}}
                 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1   gap-4 ">
                     {{#each getAddress}}
+                  
                     <div class="flex  justify-center">
+                      
                         <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
-                            {{#if this.default}}
-                            <h3 class="py-2 font-semibold text-green-600">default</h3>
-                            {{/if}}
+                             
+                             <div class=" flex justify-end">
+                                <a class=" text-red-600" href="/remove-address/{{this._id}}">Remove</a>
+                                {{!-- <a href="/cart"> 
+                                 Remove  
+                                </a> --}}
+                                </div>
+                              
+                           {{#if this.default}}
+                             <h3 class="py-2 font-semibold text-green-600">default</h3>
+                             {{/if}} 
 
                             <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">
                                 {{this.firstName}}{{this.lastName }}
@@ -86,16 +97,19 @@
 
                             <div class="flex flex-row  ">
 
-                                <a href="/update-profile/{{this._id}}">
-                                    <button type="button"
-                                        class=" m-4 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-                                        update </button>
-                                </a>
-
+                                {{#if this.default}}
+                                {{else}}
                                 <a href="/add-default-address/{{this._id}}">
                                     <button type="button"
                                         class=" m-4  px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">set
                                         default</button>
+                                </a>
+                                {{/if}}
+    
+                                <a href="/update-profile/{{this._id}}">
+                                    <button type="button"
+                                        class=" m-4 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        update </button>
                                 </a>
                             </div>
                         </div>
