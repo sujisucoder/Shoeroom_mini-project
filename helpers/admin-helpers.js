@@ -2,7 +2,7 @@ const { response } = require("../app")
 const { ObjectId } = require('mongodb');
 const db = require('../config/connection');
 const collection = require('../config/collection');
-const { reject } = require("promise");
+// const { reject } = require("promise");
 
 const objectId = require('mongodb').ObjectId
 
