@@ -3,7 +3,7 @@ const mongoClient = require('mongodb').MongoClient;
 // import { MongoClient } from 'mongodb'
 
 const state = {
-  db: undefined,
+  db: null,
 };
 
 module.exports.connect = function (done) {
@@ -13,7 +13,7 @@ module.exports.connect = function (done) {
   const dbName = 'Shoeroom';
 
   mongoClient.connect(url, (err, data) => {
-    if (err) return done(err);
+    if (err) return done("eroor is",err);
 
     state.db = data.db(dbName);
     done();
