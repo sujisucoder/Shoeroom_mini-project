@@ -3,7 +3,7 @@ const mongoClient = require('mongodb').MongoClient;
 // import { MongoClient } from 'mongodb'
 
 const state = {
-  db: null,
+  db: undefined,
 };
 
 module.exports.connect = function (done) {
